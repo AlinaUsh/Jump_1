@@ -54,7 +54,7 @@ class Circle (forma : Int,
             if (check_line(x, y, k12_, b121) + check_line(x, y, k12_, b122) == 0)
             {
                 var d : Float = (k12 * x - y.toFloat() + b12) * (k12 * x - y.toFloat() + b12) / (k12 * k12 + 1)
-                if (d * d <= r.toFloat() * r.toFloat())
+                if (d <= r.toFloat() * r.toFloat())
                     return false
                 return true
             }
@@ -73,7 +73,7 @@ class Circle (forma : Int,
             if(check_line(x, y, k23_, b231) + check_line(x, y, k23_, b232) == 0)
             {
                 var d : Float = (k23 * x - y.toFloat() + b23) * (k23 * x - y.toFloat() + b23) / (k23 * k23 + 1)
-                if (d * d <= r.toFloat() * r.toFloat())
+                if (d <= r.toFloat() * r.toFloat())
                     return false
                 return true
             }
