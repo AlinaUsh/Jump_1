@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Start"
+    android:id="@+id/rellay"
+    android:background="@drawable/fon1">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/but1"
+        android:text="ПИУ"
+        android:layout_alignParentLeft="true"
+        android:layout_weight="1"
+        android:alpha="0.1"/>
+
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"></LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/but2"
+        android:layout_weight="1"
+        android:text="ПРЫГ"
+        android:layout_alignParentRight="true"
+        android:alpha="0.1"/>
+
+</LinearLayout>
