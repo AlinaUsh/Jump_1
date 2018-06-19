@@ -8,7 +8,7 @@ import android.graphics.Point
 import android.view.View
 import java.util.*
 
-class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
+class Draw (context : Context,var relief : ArrayList<Triangle>) : View(context) {
     companion object {
         var color = Color.BLUE
     }
@@ -16,7 +16,7 @@ class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
     var touch = false
     var dy: Int = 2//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 150//высоты прыжка
+    var hOfJump: Int = 200//высоты прыжка
 
     var x = -2
     val dx = 2
@@ -43,8 +43,13 @@ class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
             canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
 
         }
+        for (i in 0..this.relief.size-1){
+            if(relief[i].y == -1)
+                relief[i].y = canvas.height
+            this.relief[i].x -= this.relief[i].speed
+            drawTriangle(relief[i])
+        }
         x -= dx
-        drawTriangle(Triangle(x, y, -1))
 
         if (touch) {
             dh += dy;
@@ -55,12 +60,11 @@ class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
             //отрисовка объекта
             //проверка препядствий
             if (dh == 0) {
-                //dy *= -1
                 touch = false
             }
         } else {
             paint.color = Draw.color
-            dy = 2
+            dy = 3
             canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
