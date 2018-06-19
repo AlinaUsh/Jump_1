@@ -14,7 +14,7 @@
         android:id="@+id/but1"
         android:text="ПИУ"
         android:layout_alignParentLeft="true"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:alpha="0.1"/>
 
 
@@ -23,15 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal" />
 
     <Button
+        android:id="@+id/but2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/but2"
-        android:layout_weight="1"
-        android:text="ПРЫГ"
-        android:layout_alignParentRight="true"
-        android:alpha="0.1"/>
+        android:layout_weight="2"
+        android:alpha="0.1"
+        android:text="ПРЫГ" />
 
 </LinearLayout>

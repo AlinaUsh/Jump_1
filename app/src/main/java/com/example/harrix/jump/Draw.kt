@@ -2,6 +2,7 @@ package com.example.harrix.jump
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
 import android.view.View
@@ -9,9 +10,9 @@ import android.view.View
 class Draw (context : Context) : View(context){
 
     var touch = false
-    /*var dy : Int = 2//разница в высоте между перерисовками
-    var dh : Int = 0//изменение высоты*/
-
+    var dy : Int = 8//разница в высоте между перерисовками
+    var dh : Int = 0//изменение высоты
+    var hOfJump : Int = 150//высоты прыжка
 
     var x = 50
     val dx = 2
@@ -24,8 +25,7 @@ class Draw (context : Context) : View(context){
 
         var paint = Paint()
 
-
-        fun drawTriangle(triangle: Triangle){
+        /*fun drawTriangle(triangle: Triangle){
             val p1 : Point = Point(triangle.x-triangle.w,triangle.y)
             val p2 = Point(triangle.x + triangle.w,triangle.y)
             val p3 = Point(triangle.x,triangle.y + triangle.orient*triangle.h)
@@ -42,10 +42,26 @@ class Draw (context : Context) : View(context){
         }else {
             drawTriangle(Triangle(x, 0, 1))
 
-        }
-        /*if (touch) {
-            y += dy;
         }*/
+        var y0 = canvas.height;
+        if (touch) {
+            dh += dy;
+            if (dh >= hOfJump)
+                dy *= -1
+            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 10f, paint)
+            //отрисовка объекта
+            //проверка препядствий
+            if (dh == 0)
+            {
+                //dy *= -1
+                touch = false
+            }
+        }
+        else{
+            dy = 1
+            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 10f, paint)
+            //отрисовка объекта
+        }
         invalidate()
 
     }

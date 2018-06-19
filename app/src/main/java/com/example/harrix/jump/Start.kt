@@ -34,6 +34,6 @@ class Start : AppCompatActivity() {
 
         lay.addView(draw)
 
-        but1.setOnClickListener { draw.touch = true}
+        but2.setOnClickListener { draw.touch = true}
     }
 }
