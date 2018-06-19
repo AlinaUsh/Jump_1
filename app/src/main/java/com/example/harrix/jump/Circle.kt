@@ -49,12 +49,12 @@ class Circle (forma : Int,
         var b231 : Float = p1.y.toFloat() - k23_ * p1.x
         var b232 : Float = p2.y.toFloat() - k23_ * p2.x
 
-        if(x < triangle.x)
+        if (x < triangle.x)
         {
             if (check_line(x, y, k12_, b121) + check_line(x, y, k12_, b122) == 0)
             {
-                var d : Float = (k12 * x - y.toFloat() + b12) / sqrt(k12 * k12 + 1)
-                if (d <= r.toFloat())
+                var d : Float = (k12 * x - y.toFloat() + b12) * (k12 * x - y.toFloat() + b12) / (k12 * k12 + 1)
+                if (d * d <= r.toFloat() * r.toFloat())
                     return false
                 return true
             }
@@ -72,8 +72,8 @@ class Circle (forma : Int,
         {
             if(check_line(x, y, k23_, b231) + check_line(x, y, k23_, b232) == 0)
             {
-                var d : Float = (k23 * x - y.toFloat() + b23) / sqrt(k23 * k23 + 1)
-                if (d <= r.toFloat())
+                var d : Float = (k23 * x - y.toFloat() + b23) * (k23 * x - y.toFloat() + b23) / (k23 * k23 + 1)
+                if (d * d <= r.toFloat() * r.toFloat())
                     return false
                 return true
             }

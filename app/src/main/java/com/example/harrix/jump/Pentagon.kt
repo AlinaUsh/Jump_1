@@ -1,17 +1,22 @@
 package com.example.harrix.jump
 
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Point
+import android.support.v4.content.ContextCompat.startActivity
 import kotlin.math.sqrt
+import kotlin.system.exitProcess
 
-class Hexagon(forma : Int,
-              c : Int,
-              var r : Int) : Player(3, c) {//r - длина стороны
+class Pentagon (forma : Int,
+              c : Int, //color
+              var a : Int) :  Player (2 , c){//a - половина основания
+
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
         var paint = Paint()
-        //...
+        //paint.color =
+        //как несколько треугольников
     }
 
     fun check_line(x : Int, y : Int, k : Float, b : Float) : Int{
@@ -19,9 +24,11 @@ class Hexagon(forma : Int,
         return -1
     }
 
-
     override fun check(triangle: Triangle, x: Int, y: Int): Boolean {
         super.check(triangle, x, y)
+
+        var r : Float = 1f
+        //считать из стороны
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
         var p2 = Point(triangle.x + triangle.w, triangle.y)
