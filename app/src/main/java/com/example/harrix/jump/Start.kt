@@ -14,11 +14,6 @@ class Start : AppCompatActivity() {
 
 
     val relief : ArrayList<Triangle> = ArrayList()
-
-    fun drawscreen(){
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
@@ -30,7 +25,7 @@ class Start : AppCompatActivity() {
 
         val lay = findViewById<LinearLayout>(R.id.layout)
 
-        val draw = Draw(this)
+        val draw = Draw(this,relief)
 
         lay.addView(draw)
 

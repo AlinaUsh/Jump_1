@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.graphics.Point
 import android.view.View
 
-class Draw (context : Context) : View(context){
+class Draw (context : Context, relief : ArrayList<Triangle>) : View(context){
 
     var touch = false
     var dy : Int = 8//разница в высоте между перерисовками
@@ -25,7 +25,7 @@ class Draw (context : Context) : View(context){
 
         var paint = Paint()
 
-        /*fun drawTriangle(triangle: Triangle){
+        fun drawTriangle(triangle: Triangle){
             val p1 : Point = Point(triangle.x-triangle.w,triangle.y)
             val p2 = Point(triangle.x + triangle.w,triangle.y)
             val p3 = Point(triangle.x,triangle.y + triangle.orient*triangle.h)
@@ -34,15 +34,17 @@ class Draw (context : Context) : View(context){
             canvas.drawLine(p2.x.toFloat(),p2.y.toFloat(),p3.x.toFloat(),p3.y.toFloat(),paint)
         }
 
-        x += dx
 
-        if(touch) {
-            drawTriangle(Triangle(x, x, 1))
-            touch = false
-        }else {
-            drawTriangle(Triangle(x, 0, 1))
 
-        }*/
+        /*  x += dx
+
+          if(touch) {
+              drawTriangle(Triangle(x, x, 1))
+              touch = false
+          }else {
+              drawTriangle(Triangle(x, 0, 1))
+
+          }*/
         var y0 = canvas.height;
         if (touch) {
             dh += dy;
