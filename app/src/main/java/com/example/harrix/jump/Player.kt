@@ -10,7 +10,9 @@ open class Player (var forma : Int,
     var x : Int = 0
     var y : Int = 0
 
-    open fun drawobject(canvas: Canvas, x: Int, y : Int){
+    open fun drawobject(canvas: Canvas, x: Int, y : Int){}//прорисовка
 
-    }
+    open fun check(triangle: Triangle, x : Int, y : Int): Boolean{}// для 1 треугольника
+                                                                   // true - прошли
+                                                                   // false - убились
 }

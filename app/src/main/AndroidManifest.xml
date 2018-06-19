@@ -18,24 +18,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Menu"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Start"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Settings"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Lvl"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Color"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Shape"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Lvl1"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Lvl2"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Lvl3"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Menu"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Start"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Settings"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Lvl"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Color"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Shape"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Lvl1"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Lvl2"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Lvl3"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Lose"></activity>
     </application>
 
 </manifest>
