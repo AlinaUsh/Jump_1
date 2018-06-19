@@ -45,7 +45,9 @@
         <activity
             android:name=".Lvl3"
             android:screenOrientation="landscape" />
-        <activity android:name=".Lose"></activity>
+        <activity
+            android:name=".Lose"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

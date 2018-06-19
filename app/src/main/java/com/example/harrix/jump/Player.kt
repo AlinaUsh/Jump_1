@@ -12,7 +12,9 @@ open class Player (var forma : Int,
 
     open fun drawobject(canvas: Canvas, x: Int, y : Int){}//прорисовка
 
-    open fun check(triangle: Triangle, x : Int, y : Int): Boolean{}// для 1 треугольника
-                                                                   // true - прошли
-                                                                   // false - убились
+    open fun check(triangle: Triangle, x : Int, y : Int): Boolean {
+     return true
+    }// для 1 треугольника
+    // true - прошли
+    // false - убились
 }

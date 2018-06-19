@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat.startActivity
 import kotlin.math.sqrt
 import kotlin.system.exitProcess
 
-class Circle ( forma : Int,
+class Circle (forma : Int,
                c : Int, //color
                var r : Int) :  Player (4 , c){
 
