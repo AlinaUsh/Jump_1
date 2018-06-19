@@ -6,8 +6,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
 import android.view.View
+import java.util.*
 
-class Draw (context : Context) : View(context) {
+class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
 
     var touch = false
     var dy: Int = 20//разница в высоте между перерисовками
