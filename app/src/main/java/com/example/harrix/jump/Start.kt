@@ -18,9 +18,19 @@ class Start : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        relief.add(Triangle(50,0,1))
-        relief.add(Triangle(70,0,1))
-        relief.add(Triangle(140,0,1))
+        relief.add(Triangle(150,0,1))
+        relief.add(Triangle(700,0,1))
+        relief.add(Triangle(210,0,1))
+        relief.add(Triangle(270,-1,-1))
+        relief.add(Triangle(2100,0,1))
+        relief.add(Triangle(1200,0,1))
+        relief.add(Triangle(850,-1,-1))
+        relief.add(Triangle(1020,-1,-1))
+        relief.add(Triangle(1700,-1,-1))
+        relief.add(Triangle(1760,-1,-1))
+        relief.add(Triangle(2300,-1,-1))
+        relief.add(Triangle(2360,-1,-1))
+        relief.add(Triangle(2420,-1,-1))
 
 
         val lay = findViewById<LinearLayout>(R.id.layout)
