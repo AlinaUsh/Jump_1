@@ -16,19 +16,19 @@ class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
     var touch = false
     var dy: Int = 2//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 150//высоты прыжка
+    var hOfJump: Int = 350//высоты прыжка
 
-    var x = -2
-    val dx = 2
-    var y = -1
+  //  var x = -1
+  //  val dx = 2
+ //   var y = -1
 
     override fun onDraw(canvas: Canvas?) {
 
         super.onDraw(canvas)
         if (canvas == null) return
         var y0 = canvas.height
-        if (x == -2) x = canvas.width
-        if (y == -1) y = canvas.height
+       // if (x == -1) x = canvas.width
+       // if (y == -1) y = canvas.height
 
 
         var paint = Paint()
@@ -42,9 +42,15 @@ class Draw (context : Context, relief : ArrayList<Triangle>) : View(context) {
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
             canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
 
+        for (i in 0..this.relief.size-1){
+            if(relief[i].y == -1)
+                relief[i].y = canvas.height
+            this.relief[i].x -= this.relief[i].speed
+            drawTriangle(relief[i])
         }
-        x -= dx
-        drawTriangle(Triangle(x, y, -1))
+
+       // x -= dx
+       // drawTriangle(Triangle(x, y, -1))
 
         if (touch) {
             dh += dy;
