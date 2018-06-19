@@ -5,4 +5,5 @@ class Triangle (var x : Int = 0,
                 var orient : Int = 1){
     val h = 100
     val w = 30
+    
 }
