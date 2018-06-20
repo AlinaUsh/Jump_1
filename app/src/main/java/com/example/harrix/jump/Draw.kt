@@ -71,6 +71,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             //проверка препядствий
             if (dh == 0) {
                 touch = false
+                dy = 3
             }
         } else {
             paint.color = Draw.color

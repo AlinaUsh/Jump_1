@@ -12,7 +12,19 @@ override fun drawobject(canvas: Canvas, x: Int, y: Int) {
     super.drawobject(canvas, x, y)
     var paint = Paint()
     //...
+    var p1 = Point(x - a, y)
+    var p2 = Point(x + a, y)
+    var p3 = Point(x + 2 * a, y - (a * sqrt(3f)).toInt())
+    var p4 = Point(x + a, y - 2 * (a * sqrt(3f)).toInt())
+    var p5 = Point(x - a, y - 2 * (a * sqrt(3f)).toInt())
+    var p6 = Point(x - 2 * a, y - (a * sqrt(3f)).toInt())
 
+    canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
+    canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
+    canvas.drawLine(p3.x.toFloat(), p3.y.toFloat(), p4.x.toFloat(), p4.y.toFloat(), paint)
+    canvas.drawLine(p4.x.toFloat(), p4.y.toFloat(), p5.x.toFloat(), p5.y.toFloat(), paint)
+    canvas.drawLine(p5.x.toFloat(), p5.y.toFloat(), p6.x.toFloat(), p6.y.toFloat(), paint)
+    canvas.drawLine(p6.x.toFloat(), p6.y.toFloat(), p1.x.toFloat(), p1.y.toFloat(), paint)
 }
 
     fun check_line(x : Int, y : Int, k : Float, b : Float) : Int{
