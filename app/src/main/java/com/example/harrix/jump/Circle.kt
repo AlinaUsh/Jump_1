@@ -9,9 +9,9 @@ import android.support.v4.content.ContextCompat.startActivity
 import kotlin.math.sqrt
 import kotlin.system.exitProcess
 
-class Circle (forma : Int,
-               c : Int, //color
-               var r : Int) :  Player (4 , c){
+class Circle (c : Int, //color
+               var r : Int,
+              forma : Int = 4) :  Player (4 , c){
 
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
