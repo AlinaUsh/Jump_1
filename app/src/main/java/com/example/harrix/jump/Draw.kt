@@ -77,11 +77,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             //отрисовка объекта
         }
 
-        for (i in 0..this.relief.size){
+        /*for (i in 0..this.relief.size){
             if (relief[i].forma == 1){
 
             }
-        }
+        }*/
 
         invalidate()
     }

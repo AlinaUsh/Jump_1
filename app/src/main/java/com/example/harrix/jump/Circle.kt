@@ -9,9 +9,9 @@ import android.support.v4.content.ContextCompat.startActivity
 import kotlin.math.sqrt
 import kotlin.system.exitProcess
 
-class Circle (c : Int, //color
-               var r : Int,
-              forma : Int = 4) :  Player (4 , c){
+class Circle (forma : Int,
+              c : Int, //color
+              var r : Int) :  Player (4 , c){
 
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
@@ -62,7 +62,7 @@ class Circle (c : Int, //color
             else
             {
                 if(((x.toFloat() - p2.x.toFloat()) * (x.toFloat() - p2.x.toFloat()) +
-                        (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
+                                (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p1.x.toFloat()) * (x.toFloat() - p1.x.toFloat()) +
                                 (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r))
                     return false
@@ -96,17 +96,18 @@ class Circle (c : Int, //color
     }
 
     override fun checkRect(rect: ReliefRect, x: Int, y: Int): Int {
-        return super.checkRect(rect, x, y)
+        super.checkRect(rect, x, y)
         if (((y >= rect.y - rect.h) && (y <= rect.y) && ((x + r) * 2 >= 2 * rect.x - rect.w) &&
                         ((x + r) * 2 <= 2 * rect.x + rect.w)) ||
-            ((y - r <= rect.y) && (2 * (x + r) <= 2 * rect.x + rect.w) && (2 * (x + r) >= 2 * rect.x - rect.w) &&
-                    (2 * (x + r) <= 2 * rect.x + rect.w)) ||
-            dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
-            dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
-            dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
-           )
+                ((y - r <= rect.y) && (2 * (x + r) <= 2 * rect.x + rect.w) && (2 * (x + r) >= 2 * rect.x - rect.w) &&
+                        (2 * (x + r) <= 2 * rect.x + rect.w)) ||
+                dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
+                dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
+                dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
+        )
             return -1
-        if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w)&&(y < rect.y - rect.h + r)&& (x * 2 < rect.x * 2 + rect.w))
+        if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
+                (x * 2 < rect.x * 2 + rect.w))
             return 0
         return 1
     }

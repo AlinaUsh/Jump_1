@@ -8,7 +8,7 @@ import kotlin.math.sqrt
 
 class Rectangle(forma : Int,
                 c : Int, //color
-                var a : Int) : Player(1, c) {//a - половина стороны
+                var a : Int) : Player(6, c) {//a - половина стороны
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
         var paint = Paint()

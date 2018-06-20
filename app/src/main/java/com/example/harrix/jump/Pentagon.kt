@@ -9,8 +9,8 @@ import kotlin.math.sqrt
 import kotlin.system.exitProcess
 
 class Pentagon (forma : Int,
-              c : Int, //color
-              var a : Int) :  Player (2 , c){//a - половина основания
+                c : Int, //color
+                var a : Int) :  Player (5 , c){//a - половина основания
 
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
@@ -27,8 +27,7 @@ class Pentagon (forma : Int,
     override fun check(triangle: Triangle, x: Int, y: Int): Boolean {
         super.check(triangle, x, y)
 
-        var r : Float = 1f
-        //считать из стороны
+        var r : Int = (a * 1.37638192047f).toInt()
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
         var p2 = Point(triangle.x + triangle.w, triangle.y)
@@ -91,4 +90,27 @@ class Pentagon (forma : Int,
             }
         }
     }
-}
+
+    fun dist(x1 : Int, y1 : Int, x2 : Int, y2 : Int) : Boolean {
+        var r : Int = (a * 1.37638192047f).toInt()
+        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) < r * r
+    }
+
+    override fun checkRect(rect: ReliefRect, x: Int, y: Int): Int {
+        super.checkRect(rect, x, y)
+        var r : Int = (a * 1.37638192047f).toInt()
+        if (((y >= rect.y - rect.h) && (y <= rect.y) && ((x + r) * 2 >= 2 * rect.x - rect.w) &&
+                        ((x + r) * 2 <= 2 * rect.x + rect.w)) ||
+                ((y - r <= rect.y) && (2 * (x + r) <= 2 * rect.x + rect.w) && (2 * (x + r) >= 2 * rect.x - rect.w) &&
+                        (2 * (x + r) <= 2 * rect.x + rect.w)) ||
+                dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
+                dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
+                dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
+        )
+            return -1
+        if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
+                (x * 2 < rect.x * 2 + rect.w))
+            return 0
+        return 1
+    }
+    }
