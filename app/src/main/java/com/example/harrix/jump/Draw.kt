@@ -1,14 +1,12 @@
 package com.example.harrix.jump
 
 import android.content.Context
-import android.graphics.Canvas
+import android.graphics.*
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Point
 import android.view.View
 import java.util.*
 
-class Draw (context : Context,var relief : ArrayList<Triangle>) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(context) {
     companion object {
         var color = Color.BLUE
     }
@@ -43,11 +41,21 @@ class Draw (context : Context,var relief : ArrayList<Triangle>) : View(context) 
             canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
 
         }
+
+        fun drawReliefRect(rect: ReliefRect){
+            canvas.drawRect(Rect(rect.x-rect.w,rect.y - rect.h,rect.x + rect.w,rect.y),paint)
+        }
+
         for (i in 0..this.relief.size-1){
-            if(relief[i].y == -1)
-                relief[i].y = canvas.height
             this.relief[i].x -= this.relief[i].speed
-            drawTriangle(relief[i])
+            if (relief[i].forma == 1) {
+                if (relief[i].y == -1)
+                    relief[i].y = canvas.height
+                drawTriangle(relief[i] as Triangle)
+            }
+            if(relief[i].forma == 2){
+                drawReliefRect(relief[i] as ReliefRect)
+            }
         }
         //x -= dx
 
