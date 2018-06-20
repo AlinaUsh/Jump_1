@@ -3,6 +3,7 @@ package com.example.harrix.jump
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.harrix.jump.R.mipmap.start
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class Menu : AppCompatActivity() {
