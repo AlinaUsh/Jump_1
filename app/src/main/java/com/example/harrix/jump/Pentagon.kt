@@ -24,7 +24,7 @@ class Pentagon (forma : Int,
         return -1
     }
 
-    override fun check(triangle: Triangle, x: Int, y: Int): Boolean {
+    override fun check(triangle: Triangle, x: Int, y: Int){//: Boolean {
         super.check(triangle, x, y)
 
         var r : Int = (a * 1.37638192047f).toInt()
@@ -57,8 +57,8 @@ class Pentagon (forma : Int,
             {
                 var d : Float = (k12 * x - y.toFloat() + b12) * (k12 * x - y.toFloat() + b12) / (k12 * k12 + 1)
                 if (d <= r.toFloat() * r.toFloat())
-                    return false
-                return true
+                    alive = false//return false
+                alive = true//return true
             }
             else
             {
@@ -66,8 +66,8 @@ class Pentagon (forma : Int,
                                 (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p1.x.toFloat()) * (x.toFloat() - p1.x.toFloat()) +
                                 (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r))
-                    return false
-                return true
+                    alive = false//return false
+                alive = false//return true
             }
         }
         else
@@ -76,8 +76,8 @@ class Pentagon (forma : Int,
             {
                 var d : Float = (k23 * x - y.toFloat() + b23) * (k23 * x - y.toFloat() + b23) / (k23 * k23 + 1)
                 if (d <= r.toFloat() * r.toFloat())
-                    return false
-                return true
+                    alive = false//return false
+                alive = true//return true
             }
             else
             {
@@ -85,8 +85,8 @@ class Pentagon (forma : Int,
                                 (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p3.x.toFloat()) * (x.toFloat() - p3.x.toFloat()) +
                                 (y.toFloat() - p3.y.toFloat()) * (y.toFloat() - p3.y.toFloat()) <= r * r))
-                    return false
-                return true
+                    alive = false//return false
+                alive = true//return true
             }
         }
     }
@@ -96,7 +96,7 @@ class Pentagon (forma : Int,
         return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) < r * r
     }
 
-    override fun checkRect(rect: ReliefRect, x: Int, y: Int): Int {
+    override fun checkRect(rect: ReliefRect, x: Int, y: Int){//: Int {
         super.checkRect(rect, x, y)
         var r : Int = (a * 1.37638192047f).toInt()
         if (((y >= rect.y - rect.h) && (y <= rect.y) && ((x + r) * 2 >= 2 * rect.x - rect.w) &&
@@ -107,10 +107,10 @@ class Pentagon (forma : Int,
                 dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
         )
-            return -1
+            jumpOnRect = -1//return -1
         if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
                 (x * 2 < rect.x * 2 + rect.w))
-            return 0
-        return 1
+            jumpOnRect = 0//return 0
+        jumpOnRect  = 1//return 1
     }
-    }
+}

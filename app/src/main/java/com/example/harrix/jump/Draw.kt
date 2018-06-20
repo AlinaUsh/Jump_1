@@ -20,6 +20,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
     val dx = 50
     var y = -1
 
+    //обьявляем игрока
+
     override fun onDraw(canvas: Canvas?) {
 
         super.onDraw(canvas)
@@ -77,11 +79,16 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             //отрисовка объекта
         }
 
+        //
         /*for (i in 0..this.relief.size){
             if (relief[i].forma == 1){
 
             }
+            else{
+
+            }
         }*/
+        //
 
         invalidate()
     }

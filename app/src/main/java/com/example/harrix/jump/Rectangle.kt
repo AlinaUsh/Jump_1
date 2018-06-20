@@ -30,7 +30,7 @@ class Rectangle(forma : Int,
         return false
     }
 
-    override fun check(triangle: Triangle, x: Int, y: Int): Boolean {
+    override fun check(triangle: Triangle, x: Int, y: Int){//: Boolean {
         super.check(triangle, x, y)
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
@@ -44,7 +44,7 @@ class Rectangle(forma : Int,
 
         if (inTriangle(p1, p2, p3, pr1) || inTriangle(p1, p2, p3, pr2) ||
                 inTriangle(p1, p2, p3, pr3) || inTriangle(p1, p2, p3, pr4))
-            return false
-        return true
+            alive = false//return false
+        alive = true//return true
     }
 }
