@@ -17,4 +17,10 @@ open class Player (var forma : Int,
     }// для 1 треугольника
     // true - прошли
     // false - убились
+
+   open fun checkRect(triangle: Triangle, x : Int, y : Int): Int {
+    return -1
+    }// для 1 прямоугольника
+    // true - прошли
+    // false - убились
 }

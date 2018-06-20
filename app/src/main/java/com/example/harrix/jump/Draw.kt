@@ -19,7 +19,7 @@ class Draw (context : Context,var relief : ArrayList<Triangle>) : View(context) 
     var hOfJump: Int = 275//высоты прыжка
 
     var x = -2
-    val dx = 10
+    val dx = 50
     var y = -1
 
     override fun onDraw(canvas: Canvas?) {
@@ -49,7 +49,7 @@ class Draw (context : Context,var relief : ArrayList<Triangle>) : View(context) 
             this.relief[i].x -= this.relief[i].speed
             drawTriangle(relief[i])
         }
-        x -= dx
+        //x -= dx
 
         if (touch) {
             dh += dy;
