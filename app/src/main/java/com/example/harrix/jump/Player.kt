@@ -1,6 +1,7 @@
 package com.example.harrix.jump
 
 import android.graphics.Canvas
+import android.graphics.Rect
 
 open class Player (var forma : Int,
               var c : Int) //color
@@ -18,9 +19,10 @@ open class Player (var forma : Int,
     // true - прошли
     // false - убились
 
-   open fun checkRect(triangle: Triangle, x : Int, y : Int): Int {
-    return -1
+   open fun checkRect(rect: ReliefRect, x : Int, y : Int): Int {
+    return 1
     }// для 1 прямоугольника
-    // true - прошли
-    // false - убились
+    // 1 - прошли
+    // -1 - убились
+    // 0 - запрыгнули
 }

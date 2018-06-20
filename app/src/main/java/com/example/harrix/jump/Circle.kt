@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Point
+import android.graphics.Rect
 import android.support.v4.content.ContextCompat.startActivity
 import kotlin.math.sqrt
 import kotlin.system.exitProcess
@@ -87,6 +88,26 @@ class Circle (forma : Int,
                 return true
             }
         }
+
     }
 
+    fun dist(x1 : Int, y1 : Int, x2 : Int, y2 : Int) : Boolean {
+        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) < r * r
+    }
+
+    override fun checkRect(rect: ReliefRect, x: Int, y: Int): Int {
+        return super.checkRect(rect, x, y)
+        if (((y >= rect.y - rect.h) && (y <= rect.y) && ((x + r) * 2 >= 2 * rect.x - rect.w) &&
+                        ((x + r) * 2 <= 2 * rect.x + rect.w)) ||
+            ((y - r <= rect.y) && (2 * (x + r) <= 2 * rect.x + rect.w) && (2 * (x + r) >= 2 * rect.x - rect.w) &&
+                    (2 * (x + r) <= 2 * rect.x + rect.w)) ||
+            dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
+            dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
+            dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
+           )
+            return -1
+        if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w)&&(y < rect.y - rect.h + r)&& (x * 2 < rect.x * 2 + rect.w))
+            return 0
+        return 1
+    }
 }
