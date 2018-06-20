@@ -1,13 +1,8 @@
 package com.example.harrix.jump
 
-import android.graphics.Canvas
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.ImageView
+import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TableLayout
 import kotlinx.android.synthetic.main.activity_start.*
 
 class Start : AppCompatActivity() {
@@ -42,6 +37,6 @@ class Start : AppCompatActivity() {
 
         lay.addView(draw)
 
-        but2.setOnClickListener { draw.touch = true}
+        but2.setOnClickListener  { draw.touch = true}
     }
 }
