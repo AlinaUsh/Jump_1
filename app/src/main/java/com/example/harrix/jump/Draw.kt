@@ -76,6 +76,13 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
+
+        for (i in 0..this.relief.size){
+            if (relief[i].forma == 1){
+
+            }
+        }
+
         invalidate()
     }
 }
