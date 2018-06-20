@@ -7,12 +7,13 @@ import kotlin.math.sqrt
 
 class Hexagon(forma : Int,
               c : Int,
-              var r : Int) : Player(3, c) {//r - длина стороны
+              var a : Int) : Player(3, c) {//r - длина стороны, a - половина
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
         var paint = Paint()
         //...
-    }
+
+}
 
     fun check_line(x : Int, y : Int, k : Float, b : Float) : Int{
         if (y.toFloat() > k * x + b) return 1
@@ -22,6 +23,8 @@ class Hexagon(forma : Int,
 
     override fun check(triangle: Triangle, x: Int, y: Int): Boolean {
         super.check(triangle, x, y)
+
+        var r : Int = 2 * a;
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
         var p2 = Point(triangle.x + triangle.w, triangle.y)
