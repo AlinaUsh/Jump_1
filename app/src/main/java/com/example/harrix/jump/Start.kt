@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_start.*
 class Start : AppCompatActivity() {
 
 
-    val relief : ArrayList<Triangle> = ArrayList()
+    val relief : ArrayList<ObjectRelief> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
@@ -26,6 +26,11 @@ class Start : AppCompatActivity() {
         relief.add(Triangle(2300,-1,-1))
         relief.add(Triangle(2360,-1,-1))
         relief.add(Triangle(2420,-1,-1))
+        relief.add(ReliefRect(500,200,100))
+        relief.add(ReliefRect(560,200,100))
+        relief.add(ReliefRect(620,200,100))
+        relief.add(ReliefRect(1000,500,50))
+        relief.add(ReliefRect(1060,500,100))
 
 
         val lay = findViewById<LinearLayout>(R.id.layout)
