@@ -12,15 +12,15 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     }
 
     var touch = false
-    var dy: Int = 2//разница в высоте между перерисовками
+    var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 275//высоты прыжка
+    var hOfJump: Int = 300//высоты прыжка
 
     var x = -2
     val dx = 50
     var y = -1
     var l = 0
-    var something : ReliefRect = ReliefRect()
+    var something : Int = 0
 
     //обьявляем игрока
 
@@ -65,24 +65,25 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         if (touch) {
             dh += dy;
-            if (dh >= player.highbottom+hOfJump)
+            if (player.y >= player.highbottom+hOfJump)
                 dy *= -1
             player.y += dy
 
             paint.color = Draw.color
-            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+            player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
-            if (dh == player.highbottom) {
+            if (player.y <= 0) {
                 touch = false
                 dy = 3
+                player.highbottom = 0
                 player.y = player.highbottom
             }
         } else {
             paint.color = Draw.color
             dy = 3
-            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+            player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
@@ -90,18 +91,21 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         for (i in 0..this.relief.size-1){
             if (relief[i].forma == 1){
-                player.check((relief[i] as Triangle),player.x + canvas.width/2,canvas.height - player.y - player.r)
+                player.check((relief[i] as Triangle),player.x + canvas.width/4,canvas.height - player.y - player.r)
             }
             else{
-                player.checkRect((relief[i] as ReliefRect), player.x + canvas.width/2,canvas.height - player.y - player.r)
+                player.checkRect((relief[i] as ReliefRect), player.x + canvas.width/4,canvas.height - player.y - player.r)
             }
             if(player.jumpOnRect){
-                touch = false
-                player.highbottom = relief[i].y + relief[i].h + player.r+1
-                player.y -= player.highbottom
-                player.jumpOnRect = false
-               // player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+                something = i
             }
+        }
+
+        if(player.jumpOnRect){
+            touch = false
+            player.highbottom = canvas.height - relief[something].y + relief[something].h + 1
+            player.y = player.highbottom
+            player.jumpOnRect = false
         }
 
 

@@ -20,7 +20,6 @@ class Start : AppCompatActivity(), Scoreable {
         relief.add(Triangle(150,0,1))
         relief.add(Triangle(700,0,1))
         relief.add(Triangle(210,0,1))
-        relief.add(Triangle(270,-1,-1))
         relief.add(Triangle(2100,0,1))
         relief.add(Triangle(1200,0,1))
         relief.add(Triangle(850,-1,-1))
@@ -33,8 +32,8 @@ class Start : AppCompatActivity(), Scoreable {
         relief.add(ReliefRect(500,200,100))
         relief.add(ReliefRect(560,200,100))
         relief.add(ReliefRect(620,200,100))
-        relief.add(ReliefRect(1400,500,50))
-        relief.add(ReliefRect(1460,500,50))
+        relief.add(ReliefRect(1400,800,50))
+        relief.add(ReliefRect(1460,800,50))
         relief.add(Triangle(1600,480,-1))
 
 

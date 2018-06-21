@@ -23,7 +23,6 @@
         android:id="@+id/passive_text"
         />
 
-
     <LinearLayout
         android:id="@+id/layout_1"
         android:layout_width="match_parent"
@@ -38,5 +37,6 @@
         android:layout_weight="2"
         android:alpha="0.1"
         android:text="ПРЫГ" />
+
 
 </LinearLayout>
