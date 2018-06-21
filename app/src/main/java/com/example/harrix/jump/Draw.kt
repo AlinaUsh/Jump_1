@@ -13,6 +13,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     }
 
     var touch = false
+    var deleteRelief = false
+
     var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
     var hOfJump: Int = 300//высоты прыжка
@@ -21,6 +23,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     val dx = 50
     var y = -1
     var l = 0
+    var y0 = -1
 
     var something : Int = 0
     var lastRectXR : Int = -1//правый край последнего прямоугольника платформы
@@ -72,6 +75,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         //x -= dx
 
+
         if (touch) {
             //dh += dy;
             if (player.y + dy >= player.highbottom + hOfJump)
@@ -96,6 +100,17 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
+
+        /*if (deleteRelief)
+        {
+            y0 = y
+            for (i in 0..this.relief.size - 1)
+                if ((relief[i].y >= y0) && (relief[i].y - relief[i].h <= y0) &&
+                        (relief[i].x > x)){
+                    //удалить элемент
+                    break
+                }
+        } */
 
         if ((player.x == lastRectXR) && (touch == false) &&
                 (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы

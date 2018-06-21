@@ -50,7 +50,7 @@ class Start : AppCompatActivity(), Scoreable {
         }
 
         but2.setOnClickListener { draw.touch = true}
-
+        //при нажатии на but1 deleteRelief = true
     }
 
 }
