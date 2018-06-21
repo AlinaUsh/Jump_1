@@ -21,12 +21,15 @@ class Pentagon (forma : Int,
         val sin72 : Float = 0.95105651629f
         val cos72 : Float = 0.30901699437f
         val sin36 : Float = 0.58778525229f
+        val tg54 : Float = 1.37638192047f
 
-        var p1 = Point(x - a, y)
-        var p2 = Point(x + a, y)
-        var p3 = Point(x + (2 * a * cos72).toInt() + a, y - (2 * a * sin72).toInt())
-        var p4 = Point(x, y - (2 * a * (sin72 + sin36)).toInt())
-        var p5 = Point(x - (2 * a * cos72).toInt() - a, y - (2 * a * sin72).toInt())
+        var y1 = y + (a * tg54).toInt()
+
+        var p1 = Point(x - a, y1)
+        var p2 = Point(x + a, y1)
+        var p3 = Point(x + (2 * a * cos72).toInt() + a, y1 - (2 * a * sin72).toInt())
+        var p4 = Point(x, y1 - (2 * a * (sin72 + sin36)).toInt())
+        var p5 = Point(x - (2 * a * cos72).toInt() - a, y1 - (2 * a * sin72).toInt())
 
         canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
         canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
@@ -46,8 +49,8 @@ class Pentagon (forma : Int,
         var r : Int = (a * 1.37638192047f).toInt()
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
-        var p2 = Point(triangle.x + triangle.w, triangle.y)
-        var p3 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
+        var p3 = Point(triangle.x + triangle.w, triangle.y)
+        var p2 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
 
         var k12 : Float = (p1.y - p2.y).toFloat() / (p1.x - p2.x).toFloat()//p1---p2
         var b12 : Float = (p1.x * p2.y - p2.x * p1.y).toFloat() /

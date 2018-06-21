@@ -12,12 +12,14 @@ override fun drawobject(canvas: Canvas, x: Int, y: Int) {
     super.drawobject(canvas, x, y)
     var paint = Paint()
     //...
-    var p1 = Point(x - a, y)
-    var p2 = Point(x + a, y)
-    var p3 = Point(x + 2 * a, y - (a * sqrt(3f)).toInt())
-    var p4 = Point(x + a, y - 2 * (a * sqrt(3f)).toInt())
-    var p5 = Point(x - a, y - 2 * (a * sqrt(3f)).toInt())
-    var p6 = Point(x - 2 * a, y - (a * sqrt(3f)).toInt())
+    var y1 = y + (a * sqrt(3f)).toInt()
+
+    var p1 = Point(x - a, y1)
+    var p2 = Point(x + a, y1)
+    var p3 = Point(x + 2 * a, y1 - (a * sqrt(3f)).toInt())
+    var p4 = Point(x + a, y1 - 2 * (a * sqrt(3f)).toInt())
+    var p5 = Point(x - a, y1 - 2 * (a * sqrt(3f)).toInt())
+    var p6 = Point(x - 2 * a, y1 - (a * sqrt(3f)).toInt())
 
     canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
     canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
@@ -39,8 +41,8 @@ override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         var r : Int = 2 * a;
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
-        var p2 = Point(triangle.x + triangle.w, triangle.y)
-        var p3 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
+        var p3 = Point(triangle.x + triangle.w, triangle.y)
+        var p2 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
 
         var k12 : Float = (p1.y - p2.y).toFloat() / (p1.x - p2.x).toFloat()//p1---p2
         var b12 : Float = (p1.x * p2.y - p2.x * p1.y).toFloat() /

@@ -12,7 +12,8 @@ class Rectangle(forma : Int,
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
         var paint = Paint()
-        canvas.drawRect((x - a).toFloat(), (y - 2 * a).toFloat(), (x + a).toFloat(), y.toFloat(), paint)
+        var y1 = y - a
+        canvas.drawRect((x - a).toFloat(), (y1 - 2 * a).toFloat(), (x + a).toFloat(), y1.toFloat(), paint)
     }
 
     fun area(p1: Point, p2 : Point, p3 : Point) : Int{
@@ -33,14 +34,16 @@ class Rectangle(forma : Int,
     override fun check(triangle: Triangle, x: Int, y: Int){//: Boolean {
         super.check(triangle, x, y)
 
+        var y1 = y - a
+
         var p1 = Point(triangle.x - triangle.w, triangle.y)
         var p2 = Point(triangle.x + triangle.w, triangle.y)
         var p3 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
 
-        var pr1 = Point(x - a, y)
-        var pr2 = Point(x + a, y)
-        var pr3 = Point(x - a, y - 2 * a)
-        var pr4 = Point(x + a, y - 2 * a)
+        var pr1 = Point(x - a, y1)
+        var pr2 = Point(x + a, y1)
+        var pr3 = Point(x - a, y1 - 2 * a)
+        var pr4 = Point(x + a, y1 - 2 * a)
 
         if (inTriangle(p1, p2, p3, pr1) || inTriangle(p1, p2, p3, pr2) ||
                 inTriangle(p1, p2, p3, pr3) || inTriangle(p1, p2, p3, pr4)){

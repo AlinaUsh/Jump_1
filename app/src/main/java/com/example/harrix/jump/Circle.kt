@@ -29,8 +29,8 @@ class Circle (forma : Int,
         super.check(triangle, x, y)
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
-        var p2 = Point(triangle.x + triangle.w, triangle.y)
-        var p3 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
+        var p3 = Point(triangle.x + triangle.w, triangle.y)
+        var p2 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
 
         var k12 : Float = (p1.y - p2.y).toFloat() / (p1.x - p2.x).toFloat()//p1---p2
         var b12 : Float = (p1.x * p2.y - p2.x * p1.y).toFloat() /
