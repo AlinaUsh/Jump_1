@@ -20,6 +20,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     val dx = 50
     var y = -1
     var l = 0
+    var something : ReliefRect = ReliefRect()
 
     //обьявляем игрока
 
@@ -64,7 +65,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         if (touch) {
             dh += dy;
-            if (dh >= hOfJump)
+            if (dh >= player.highbottom+hOfJump)
                 dy *= -1
             player.y += dy
 
@@ -95,11 +96,16 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 player.checkRect((relief[i] as ReliefRect), player.x + canvas.width/2,canvas.height - player.y - player.r)
             }
             if(player.jumpOnRect){
-                touch = false
-                player.highbottom = relief[i].y + relief[i].h + player.r
-                player.y -= player.highbottom
-                player.jumpOnRect = false
+                something = relief[i] as ReliefRect
             }
+        }
+
+        if(player.jumpOnRect){
+            touch = false
+            player.highbottom = something.y + something.h + player.r+1
+            player.y = player.highbottom
+            player.jumpOnRect = false
+           // player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
         }
 
 

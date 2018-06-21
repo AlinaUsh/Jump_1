@@ -33,8 +33,9 @@ class Start : AppCompatActivity(), Scoreable {
         relief.add(ReliefRect(500,200,100))
         relief.add(ReliefRect(560,200,100))
         relief.add(ReliefRect(620,200,100))
-        relief.add(ReliefRect(1000,500,50))
-        relief.add(ReliefRect(1060,500,100))
+        relief.add(ReliefRect(1400,500,50))
+        relief.add(ReliefRect(1460,500,50))
+        relief.add(Triangle(1600,480,-1))
 
 
         val lay = findViewById<LinearLayout>(R.id.layout)

@@ -96,18 +96,18 @@ class Circle (c : Int, //color
     }
 
     override fun checkRect(rect: ReliefRect, x: Int, y: Int){//: Int {
-        super.checkRect(rect, x, y)
-        if (((y >= rect.y - rect.h) && (y <= rect.y) && ((x + r)  >=  rect.x - rect.w) &&
-                        ((x + r)  <= rect.x + rect.w)) ||
-                ((y - r <= rect.y) && ((x + r) <= rect.x + rect.w) && ((x + r) >= rect.x - rect.w) &&
-                        ((x + r) <= rect.x + rect.w)) ||
-                dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
-                dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
-                dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
-        )
+        //super.checkRect(rect, x, y)
+        if (((y > rect.y - rect.h) && (y < rect.y)
+                        && ((x + r)  >  rect.x - rect.w) && ((x - r)  < rect.x + rect.w)) ||
+                ((y - r < rect.y) && ((y > rect.y))
+                        && (x < rect.x + rect.w) && (x > rect.x - rect.w) ||
+                dist(x, y, rect.x - rect.w , rect.y) ||
+                dist(x, y, rect.x + rect.w , rect.y) ||
+                dist(x, y, rect.x - rect.w, rect.y - rect.h)))
+
             alive = false//return -1
-        if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
-                (x * 2 < rect.x * 2 + rect.w))
+        if ((y > rect.y - rect.h - r) && (y < rect.y - rect.h + r) &&
+                (x  > rect.x  - rect.w) && (x  < rect.x  + rect.w))
             jumpOnRect = true//return 0
         //jumpOnRect = 1//return 1
     }
