@@ -139,16 +139,11 @@ class Pentagon (forma : Int,
                 dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
-        ){
-            jumpOnRect = -1//return -1
-            return
-        }
+        )
+            alive = false//return -1
         if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
-                (x * 2 < rect.x * 2 + rect.w)){
-            jumpOnRect = 0//return 0
-            return
-        }
-        jumpOnRect  = 1//return 1
-        return
+                (x * 2 < rect.x * 2 + rect.w))
+            jumpOnRect = true//return 0
+        //jumpOnRect  = 1//return 1
     }
 }

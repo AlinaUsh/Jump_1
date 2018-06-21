@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.view.View
 import java.util.*
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player) : View(context) {
     companion object {
         var color = Color.BLUE
     }
@@ -73,9 +73,10 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
-            if (dh == 0) {
+            if (dh == player.highbottom) {
                 touch = false
                 dy = 3
+                player.y = player.highbottom
             }
         } else {
             paint.color = Draw.color
@@ -91,9 +92,16 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
                 player.check((relief[i] as Triangle),player.x + canvas.width/2,canvas.height - player.y - player.r)
             }
             else{
-
+                player.checkRect((relief[i] as ReliefRect), player.x + canvas.width/2,canvas.height - player.y - player.r)
+            }
+            if(player.jumpOnRect){
+                touch = false
+                player.highbottom = relief[i].y + relief[i].h + player.r
+                player.y -= player.highbottom
+                player.jumpOnRect = false
             }
         }
+
 
         if(player.alive)
             invalidate()

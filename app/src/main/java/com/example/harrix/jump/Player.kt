@@ -13,7 +13,8 @@ open class Player (var forma : Int,
     var y : Int = 0
     var sum : Int = 0
     var alive : Boolean = true
-    var jumpOnRect : Int = 1
+    var jumpOnRect : Boolean = false
+    var highbottom : Int = 0
 
     open fun drawobject(canvas: Canvas, x: Int, y : Int){}//прорисовка
 
