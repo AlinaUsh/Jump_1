@@ -24,6 +24,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
     var something : Int = 0
     var lastRectXR : Int = -1//правый край последнего прямоугольника платформы
+    var nextOnTheSameH : Boolean = false//последний ли прямоугольник платформы
 
     //обьявляем игрока
 
@@ -67,6 +68,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         for (i in 0..this.coins.size - 1)
             this.coins[i].x -= this.coins[i].speed
 
+        lastRectXR -= relief[0].speed
+
         //x -= dx
 
         if (touch) {
@@ -94,6 +97,12 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             //отрисовка объекта
         }
 
+        if ((player.x == lastRectXR) && (touch == false) &&
+                (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы
+            dy = -3
+        }else if(player.x == lastRectXR)
+            nextOnTheSameH = false
+
         for (i in 0..this.coins.size - 1)
             player.getCoin(coins[i].x, coins[i].y)
 
@@ -108,6 +117,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 something = i
                 lastRectXR = relief[i].x + 15
             }
+            if ((lastRectXR > player.x) && (relief[i].forma == 2) && (relief[i].x - 15 == lastRectXR))
+                nextOnTheSameH = true
         }
 
         if(player.jumpOnRect){
