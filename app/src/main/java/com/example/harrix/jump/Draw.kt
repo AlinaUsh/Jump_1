@@ -5,8 +5,9 @@ import android.graphics.*
 import android.graphics.Color
 import android.view.View
 import java.util.*
+import kotlin.collections.ArrayList
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player, var coins: ArrayList<Coins>) : View(context) {
     companion object {
         var color = Color.BLUE
     }
@@ -64,11 +65,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         //x -= dx
 
         if (touch) {
-            dh += dy;
-            if (player.y >= player.highbottom+hOfJump)
+            //dh += dy;
+            if (player.y + dy >= player.highbottom + hOfJump)
                 dy *= -1
             player.y += dy
-
+            dh += dy
             paint.color = Draw.color
             player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
@@ -78,7 +79,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 touch = false
                 dy = 3
                 player.highbottom = 0
-                player.y = player.highbottom
+                player.y = 0//player.r//player.highbottom
             }
         } else {
             paint.color = Draw.color
@@ -88,6 +89,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             //отрисовка объекта
         }
 
+        /*for (i in 0..this.coins.size - 1)
+            player.getCoin(coins[i].x, coins[i].y)*/
 
         for (i in 0..this.relief.size-1){
             if (relief[i].forma == 1){
@@ -104,10 +107,12 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         if(player.jumpOnRect){
             touch = false
             player.highbottom = canvas.height - relief[something].y + relief[something].h + 1
-            player.y = player.highbottom
+            player.y = player.highbottom// + player.r
             player.jumpOnRect = false
+            dy = 3
+            dh = 0
+            touch = false
         }
-
 
         if(player.alive)
             invalidate()

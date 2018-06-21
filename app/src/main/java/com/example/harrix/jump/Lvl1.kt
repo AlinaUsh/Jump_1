@@ -11,6 +11,7 @@ class Lvl1 : AppCompatActivity() , Scoreable {
         passive_text.text="score: ${score / 10}"
     }
 
+    val coins : ArrayList<Coins> = ArrayList()
     val relief : ArrayList<ObjectRelief> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class Lvl1 : AppCompatActivity() , Scoreable {
 
         val lay = findViewById<LinearLayout>(R.id.layout_1)
 
-        val draw = Draw(this,relief,Circle(1,20))
+        val draw = Draw(this,relief,Circle(1,20), coins)
 
         lay.addView(draw)
 
