@@ -12,12 +12,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
     }
 
     var touch = false
-    var dy: Int = 2//разница в высоте между перерисовками
+    var dy: Int = 5//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 275//высоты прыжка
+    var hOfJump: Int = 250//высоты прыжка
 
-    var x = -2
-    val dx = 50
+    var x = -1
     var y = -1
 
     //обьявляем игрока
@@ -27,7 +26,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
         super.onDraw(canvas)
         if (canvas == null) return
         var y0 = canvas.height
-        if (x == -2) x = canvas.width
+        if (x == -1) x = canvas.width
         if (y == -1) y = canvas.height
 
 
@@ -53,9 +52,16 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             if (relief[i].forma == 1) {
                 if (relief[i].y == -1)
                     relief[i].y = canvas.height
+                if (relief[i].y == 1)
+                    relief[i].y = canvas.height/3*2
+                if (relief[i].y == 2)
+                    relief[i].y = canvas.height/6*5
                 drawTriangle(relief[i] as Triangle)
             }
             if(relief[i].forma == 2){
+
+                if (relief[i].y == -1)
+                    relief[i].y = canvas.height
                 drawReliefRect(relief[i] as ReliefRect)
             }
         }
@@ -66,17 +72,17 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             if (dh >= hOfJump)
                 dy *= -1
             paint.color = Draw.color
-            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
+            canvas.drawCircle((canvas.width / 4).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
             if (dh == 0) {
                 touch = false
-                dy = 3
+                dy = 5
             }
         } else {
             paint.color = Draw.color
-            dy = 3
-            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
+            dy = 5
+            canvas.drawCircle((canvas.width / 4).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
 

@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_lvl1.*
+import android.R.attr.y
+import android.R.attr.x
+import android.graphics.Point
+import android.view.Display
+
+
 
 class Lvl1 : AppCompatActivity() {
 
@@ -32,12 +38,37 @@ class Lvl1 : AppCompatActivity() {
         relief.add(Triangle(2860,-1,-1))
         relief.add(Triangle(3000,2,1))
         relief.add(Triangle(3060,2,1))
+        relief.add(Triangle(3260,-1,-1))
+        relief.add(Triangle(3320,-1,-1))
+        relief.add(Triangle(3400,1,1))
+        relief.add(Triangle(3560,-1,-1))
+        relief.add(Triangle(3660,1,1))
+        relief.add(Triangle(3760,-1,-1))
+        relief.add(Triangle(3860,1,1))
+        relief.add(Triangle(3960,-1,-1))
+        relief.add(Triangle(4060,1,1))
+        relief.add(Triangle(4105,2,1))
+        relief.add(Triangle(4165,2,1))
+        relief.add(Triangle(4225,2,1))
+        relief.add(Triangle(4310,-1,-1))
+        relief.add(Triangle(4370,-1,-1))
+        relief.add(Triangle(4670,-1,-1))
+        relief.add(Triangle(4870,-1,-1))
+        relief.add(Triangle(5070,-1,-1))
 
-        val lay = findViewById<LinearLayout>(R.id.layout_1)
 
         val draw = Draw(this,relief)
 
-        lay.addView(draw)
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val width = size.x
+        val height = size.y
+
+        val lp = LinearLayout.LayoutParams(draw.width, height)
+        draw.layoutParams = lp
+
+        layout_1.addView(draw)
 
         but2_1.setOnClickListener{draw.touch = true}
     }
