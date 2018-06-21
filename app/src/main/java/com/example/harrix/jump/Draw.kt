@@ -102,6 +102,9 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         if(context is Scoreable) {
             (context as Scoreable).updateScore(l)
         }
+        if(context is Shotable){
+            (context as Shotable).updatePos(l,player.y)
+        }
 
 
     }
