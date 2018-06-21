@@ -6,13 +6,13 @@ import android.graphics.Color
 import android.view.View
 import java.util.*
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player) : View(context) {
     companion object {
         var color = Color.BLUE
     }
 
     var touch = false
-    var dy: Int = 2//разница в высоте между перерисовками
+    var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
     var hOfJump: Int = 275//высоты прыжка
 
@@ -69,7 +69,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             player.y += dy
 
             paint.color = Draw.color
-            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+            player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
@@ -80,7 +80,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
         } else {
             paint.color = Draw.color
             dy = 3
-            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+            player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
@@ -88,7 +88,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
 
         for (i in 0..this.relief.size-1){
             if (relief[i].forma == 1){
-                player.check((relief[i] as Triangle),player.x + canvas.width/2,canvas.height - player.y - player.r)
+                player.check((relief[i] as Triangle),player.x + canvas.width/4,canvas.height - player.y - player.r)
             }
             else{
 
