@@ -30,7 +30,7 @@ open class Player (var forma : Int,
     // 0 - запрыгнули
 
     fun getCoin(x1 : Int, y1 : Int){//координаты монетки
-        if ((x == x1) && (y == y1))
+        if ((x - x1) * (x - x1) + (y - y1) * (y - y1) <= 100)//
             this.sum += 10//удаляем монетку из массива рельефа
     }
 }
