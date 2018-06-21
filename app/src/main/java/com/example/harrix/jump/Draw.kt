@@ -30,9 +30,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
         if (x == -2) x = canvas.width
         if (y == -1) y = canvas.height
 
-
         var paint = Paint()
-
 
         fun drawTriangle(triangle: Triangle) {
             val p1: Point = Point(triangle.x - triangle.w, triangle.y)
@@ -41,7 +39,6 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
             canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
-
         }
 
         fun drawReliefRect(rect: ReliefRect){

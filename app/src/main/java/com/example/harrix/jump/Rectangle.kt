@@ -43,8 +43,10 @@ class Rectangle(forma : Int,
         var pr4 = Point(x + a, y - 2 * a)
 
         if (inTriangle(p1, p2, p3, pr1) || inTriangle(p1, p2, p3, pr2) ||
-                inTriangle(p1, p2, p3, pr3) || inTriangle(p1, p2, p3, pr4))
+                inTriangle(p1, p2, p3, pr3) || inTriangle(p1, p2, p3, pr4)){
             alive = false//return false
+            return
+        }
         alive = true//return true
     }
 }

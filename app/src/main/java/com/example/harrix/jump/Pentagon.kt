@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Point
 import android.support.v4.content.ContextCompat.startActivity
+import kotlin.math.sin
 import kotlin.math.sqrt
 import kotlin.system.exitProcess
 
@@ -16,7 +17,22 @@ class Pentagon (forma : Int,
         super.drawobject(canvas, x, y)
         var paint = Paint()
         //paint.color =
-        //как несколько треугольников
+
+        val sin72 : Float = 0.95105651629f
+        val cos72 : Float = 0.30901699437f
+        val sin36 : Float = 0.58778525229f
+
+        var p1 = Point(x - a, y)
+        var p2 = Point(x + a, y)
+        var p3 = Point(x + (2 * a * cos72).toInt() + a, y - (2 * a * sin72).toInt())
+        var p4 = Point(x, y - (2 * a * (sin72 + sin36)).toInt())
+        var p5 = Point(x - (2 * a * cos72).toInt() - a, y - (2 * a * sin72).toInt())
+
+        canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
+        canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
+        canvas.drawLine(p3.x.toFloat(), p3.y.toFloat(), p4.x.toFloat(), p4.y.toFloat(), paint)
+        canvas.drawLine(p4.x.toFloat(), p4.y.toFloat(), p5.x.toFloat(), p5.y.toFloat(), paint)
+        canvas.drawLine(p5.x.toFloat(), p5.y.toFloat(), p1.x.toFloat(), p1.y.toFloat(), paint)
     }
 
     fun check_line(x : Int, y : Int, k : Float, b : Float) : Int{
@@ -56,18 +72,24 @@ class Pentagon (forma : Int,
             if (check_line(x, y, k12_, b121) + check_line(x, y, k12_, b122) == 0)
             {
                 var d : Float = (k12 * x - y.toFloat() + b12) * (k12 * x - y.toFloat() + b12) / (k12 * k12 + 1)
-                if (d <= r.toFloat() * r.toFloat())
+                if (d <= r.toFloat() * r.toFloat()){
                     alive = false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
             else
             {
                 if(((x.toFloat() - p2.x.toFloat()) * (x.toFloat() - p2.x.toFloat()) +
                                 (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p1.x.toFloat()) * (x.toFloat() - p1.x.toFloat()) +
-                                (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r))
+                                (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r)) {
                     alive = false//return false
+                    return
+                }
                 alive = false//return true
+                return
             }
         }
         else
@@ -76,8 +98,12 @@ class Pentagon (forma : Int,
             {
                 var d : Float = (k23 * x - y.toFloat() + b23) * (k23 * x - y.toFloat() + b23) / (k23 * k23 + 1)
                 if (d <= r.toFloat() * r.toFloat())
+                {
                     alive = false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
             else
             {
@@ -85,8 +111,12 @@ class Pentagon (forma : Int,
                                 (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p3.x.toFloat()) * (x.toFloat() - p3.x.toFloat()) +
                                 (y.toFloat() - p3.y.toFloat()) * (y.toFloat() - p3.y.toFloat()) <= r * r))
+                {
                     alive = false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
         }
     }
@@ -106,11 +136,16 @@ class Pentagon (forma : Int,
                 dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
-        )
+        ){
             jumpOnRect = -1//return -1
+            return
+        }
         if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
-                (x * 2 < rect.x * 2 + rect.w))
+                (x * 2 < rect.x * 2 + rect.w)){
             jumpOnRect = 0//return 0
+            return
+        }
         jumpOnRect  = 1//return 1
+        return
     }
 }
