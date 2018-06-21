@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_start.*
 
-class Start : AppCompatActivity() {
+class Start : AppCompatActivity(), Scoreable {
+    override fun updateScore(score: Int) {
+        passive_text.text="score: ${score / 10}"
+    }
 
 
     val relief : ArrayList<ObjectRelief> = ArrayList()
@@ -49,4 +52,5 @@ class Start : AppCompatActivity() {
 
         but2.setOnClickListener { draw.touch = true}
     }
+
 }

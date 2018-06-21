@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_lvl1.*
 
-class Lvl1 : AppCompatActivity() {
+class Lvl1 : AppCompatActivity() , Scoreable {
+    override fun updateScore(score: Int) {
+        passive_text.text="score: ${score / 10}"
+    }
 
     val relief : ArrayList<ObjectRelief> = ArrayList()
 

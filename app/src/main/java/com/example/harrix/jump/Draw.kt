@@ -6,8 +6,7 @@ import android.graphics.Color
 import android.view.View
 import java.util.*
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>,var player: Player,
-            var died : Boolean = false) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(context) {
     companion object {
         var color = Color.BLUE
     }
@@ -20,7 +19,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>,var player: P
     var x = -2
     val dx = 50
     var y = -1
-
+    var l = 0
 
     //обьявляем игрока
 
@@ -32,7 +31,9 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>,var player: P
         if (x == -2) x = canvas.width
         if (y == -1) y = canvas.height
 
+
         var paint = Paint()
+
 
         fun drawTriangle(triangle: Triangle) {
             val p1: Point = Point(triangle.x - triangle.w, triangle.y)
@@ -41,6 +42,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>,var player: P
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
             canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
+
         }
 
         fun drawReliefRect(rect: ReliefRect){
@@ -95,5 +97,12 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>,var player: P
 
         if(player.alive)
             invalidate()
+        l++
+
+        if(context is Scoreable) {
+            (context as Scoreable).updateScore(l)
+        }
+
+
     }
 }
