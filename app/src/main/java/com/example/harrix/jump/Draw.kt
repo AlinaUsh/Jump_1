@@ -96,16 +96,12 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 player.checkRect((relief[i] as ReliefRect), player.x + canvas.width/2,canvas.height - player.y - player.r)
             }
             if(player.jumpOnRect){
-                something = relief[i] as ReliefRect
+                touch = false
+                player.highbottom = relief[i].y + relief[i].h + player.r+1
+                player.y -= player.highbottom
+                player.jumpOnRect = false
+               // player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
             }
-        }
-
-        if(player.jumpOnRect){
-            touch = false
-            player.highbottom = something.y + something.h + player.r+1
-            player.y = player.highbottom
-            player.jumpOnRect = false
-           // player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
         }
 
 
