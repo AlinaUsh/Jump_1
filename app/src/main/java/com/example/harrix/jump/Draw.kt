@@ -12,6 +12,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         var color = Color.BLUE
     }
 
+
     var touch = false
     var deleteRelief = false
 
