@@ -31,7 +31,9 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
         if (x == -2) x = canvas.width
         if (y == -1) y = canvas.height
 
+
         var paint = Paint()
+
 
         fun drawTriangle(triangle: Triangle) {
             val p1: Point = Point(triangle.x - triangle.w, triangle.y)
@@ -40,6 +42,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p2.x.toFloat(), p2.y.toFloat(), paint)
             canvas.drawLine(p1.x.toFloat(), p1.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
             canvas.drawLine(p2.x.toFloat(), p2.y.toFloat(), p3.x.toFloat(), p3.y.toFloat(), paint)
+
         }
 
         fun drawReliefRect(rect: ReliefRect){
@@ -63,8 +66,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             dh += dy;
             if (dh >= hOfJump)
                 dy *= -1
-            paint.color = color
-            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
+            player.y += dy
+
+            paint.color = Draw.color
+            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+           // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
             if (dh == 0) {
@@ -72,24 +78,25 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
                 dy = 3
             }
         } else {
-            paint.color = color
+            paint.color = Draw.color
             dy = 3
-            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
+            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+           // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
 
-        //
-        /*for (i in 0..this.relief.size){
-            if (relief[i].forma == 1){
 
+        for (i in 0..this.relief.size-1){
+            if (relief[i].forma == 1){
+                player.check((relief[i] as Triangle),player.x + canvas.width/2,canvas.height - player.y - player.r)
             }
             else{
 
             }
-        }*/
-        //
+        }
 
-        invalidate()
+        if(player.alive)
+            invalidate()
         l++
 
         if(context is Scoreable) {

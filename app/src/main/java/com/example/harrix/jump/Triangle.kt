@@ -6,4 +6,7 @@ class Triangle (x : Int = 0,
                 speed : Int = 1,
                 h : Int = 100,
                 forma : Int = 1) : ObjectRelief(1,x,y,speed, h){
+
+    //orient -1  вверх
+
 }
