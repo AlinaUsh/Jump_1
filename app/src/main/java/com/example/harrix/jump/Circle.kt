@@ -29,8 +29,8 @@ class Circle (forma : Int,
         super.check(triangle, x, y)
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
-        var p2 = Point(triangle.x + triangle.w, triangle.y)
-        var p3 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
+        var p3 = Point(triangle.x + triangle.w, triangle.y)
+        var p2 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
 
         var k12 : Float = (p1.y - p2.y).toFloat() / (p1.x - p2.x).toFloat()//p1---p2
         var b12 : Float = (p1.x * p2.y - p2.x * p1.y).toFloat() /
@@ -55,18 +55,24 @@ class Circle (forma : Int,
             if (check_line(x, y, k12_, b121) + check_line(x, y, k12_, b122) == 0)
             {
                 var d : Float = (k12 * x - y.toFloat() + b12) * (k12 * x - y.toFloat() + b12) / (k12 * k12 + 1)
-                if (d <= r.toFloat() * r.toFloat())
+                if (d <= r.toFloat() * r.toFloat()){
                     alive =  false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
             else
             {
                 if(((x.toFloat() - p2.x.toFloat()) * (x.toFloat() - p2.x.toFloat()) +
                                 (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p1.x.toFloat()) * (x.toFloat() - p1.x.toFloat()) +
-                                (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r))
+                                (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r)){
                     alive = false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
         }
         else
@@ -74,18 +80,24 @@ class Circle (forma : Int,
             if(check_line(x, y, k23_, b231) + check_line(x, y, k23_, b232) == 0)
             {
                 var d : Float = (k23 * x - y.toFloat() + b23) * (k23 * x - y.toFloat() + b23) / (k23 * k23 + 1)
-                if (d <= r.toFloat() * r.toFloat())
+                if (d <= r.toFloat() * r.toFloat()){
                     alive = false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
             else
             {
                 if(((x.toFloat() - p2.x.toFloat()) * (x.toFloat() - p2.x.toFloat()) +
                                 (y.toFloat() - p2.y.toFloat()) * (y.toFloat() - p2.y.toFloat()) <= r * r) ||
                         ((x.toFloat() - p3.x.toFloat()) * (x.toFloat() - p3.x.toFloat()) +
-                                (y.toFloat() - p3.y.toFloat()) * (y.toFloat() - p3.y.toFloat()) <= r * r))
+                                (y.toFloat() - p3.y.toFloat()) * (y.toFloat() - p3.y.toFloat()) <= r * r)){
                     alive = false//return false
+                    return
+                }
                 alive = true//return true
+                return
             }
         }
 
@@ -104,11 +116,15 @@ class Circle (forma : Int,
                 dist(x, y, rect.x - (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, rect.x + (rect.w / 2).toInt(), rect.y) ||
                 dist(x, y, (rect.x - rect.w / 2).toInt(), rect.y - rect.h)
-        )
+        ){
             jumpOnRect = -1//return -1
+            return
+        }
         if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
-                (x * 2 < rect.x * 2 + rect.w))
+                (x * 2 < rect.x * 2 + rect.w)){
             jumpOnRect = 0//return 0
+            return
+        }
         jumpOnRect = 1//return 1
     }
 }
