@@ -8,6 +8,7 @@ open class Player (var forma : Int,
 {
    // var speedx : Int = 0
    // var speedy : Int = 0
+    var sum : Int = 0
     var x : Int = 10
     var y : Int = 10
     var alive : Boolean = true
@@ -27,4 +28,9 @@ open class Player (var forma : Int,
     // 1 - прошли
     // -1 - убились
     // 0 - запрыгнули
+
+    fun getCoin(x1 : Int, y1 : Int){//координаты монетки
+        if ((x == x1) && (y == y1))
+            this.sum += 10//удаляем монетку из массива рельефа
+    }
 }
