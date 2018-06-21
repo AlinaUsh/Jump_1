@@ -19,6 +19,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
     var x = -2
     val dx = 50
     var y = -1
+    var l = 0
 
     //обьявляем игрока
 
@@ -65,7 +66,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             dh += dy;
             if (dh >= hOfJump)
                 dy *= -1
-            paint.color = Draw.color
+            paint.color = color
             canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
@@ -74,7 +75,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
                 dy = 3
             }
         } else {
-            paint.color = Draw.color
+            paint.color = color
             dy = 3
             canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
@@ -92,5 +93,12 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
         //
 
         invalidate()
+        l++
+
+        if(context is Scoreable) {
+            (context as Scoreable).updateScore(l)
+        }
+
+
     }
 }

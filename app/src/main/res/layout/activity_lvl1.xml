@@ -31,5 +31,10 @@
         android:layout_weight="2"
         android:alpha="0.1"
         android:text="ПРЫГ" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passive_text"
+        />
 
 </LinearLayout>
