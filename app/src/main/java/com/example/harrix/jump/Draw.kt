@@ -6,7 +6,8 @@ import android.graphics.Color
 import android.view.View
 import java.util.*
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>,var player: Player,
+            var died : Boolean = false) : View(context) {
     companion object {
         var color = Color.BLUE
     }
@@ -19,6 +20,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
     var x = -2
     val dx = 50
     var y = -1
+
 
     //обьявляем игрока
 
@@ -65,8 +67,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
             dh += dy;
             if (dh >= hOfJump)
                 dy *= -1
+            player.y += dy
+
             paint.color = Draw.color
-            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
+            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+           // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
             if (dh == 0) {
@@ -76,21 +81,22 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>) : View(conte
         } else {
             paint.color = Draw.color
             dy = 3
-            canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
+            player.drawobject(canvas,canvas.width/2 + player.x, canvas.height - player.y - player.r)
+           // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
 
-        //
-        /*for (i in 0..this.relief.size){
-            if (relief[i].forma == 1){
 
+        for (i in 0..this.relief.size-1){
+            if (relief[i].forma == 1){
+                player.check((relief[i] as Triangle),player.x + canvas.width/2,canvas.height - player.y - player.r)
             }
             else{
 
             }
-        }*/
-        //
+        }
 
-        invalidate()
+        if(player.alive)
+            invalidate()
     }
 }

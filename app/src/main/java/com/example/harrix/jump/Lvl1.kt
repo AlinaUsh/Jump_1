@@ -35,7 +35,7 @@ class Lvl1 : AppCompatActivity() {
 
         val lay = findViewById<LinearLayout>(R.id.layout_1)
 
-        val draw = Draw(this,relief)
+        val draw = Draw(this,relief,Circle(1,20))
 
         lay.addView(draw)
 

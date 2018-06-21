@@ -4,12 +4,13 @@ import android.graphics.Canvas
 import android.graphics.Rect
 
 open class Player (var forma : Int,
-              var c : Int) //color
+                   var c : Int, //color
+                   var r : Int = 5)
 {
    // var speedx : Int = 0
    // var speedy : Int = 0
-    var x : Int = 10
-    var y : Int = 10
+    var x : Int = 0
+    var y : Int = 0
     var alive : Boolean = true
     var jumpOnRect : Int = 1
 

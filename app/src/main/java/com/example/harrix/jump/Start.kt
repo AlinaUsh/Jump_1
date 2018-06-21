@@ -1,5 +1,6 @@
 package com.example.harrix.jump
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -34,10 +35,17 @@ class Start : AppCompatActivity() {
 
 
         val lay = findViewById<LinearLayout>(R.id.layout)
+        val player = Circle(1,20)
 
-        val draw = Draw(this, relief)
+        val draw = Draw(this, relief, player)
 
         lay.addView(draw)
+
+        if(!player.alive){
+            val intent = Intent ( this, Lose::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
 
         but2.setOnClickListener { draw.touch = true}
     }

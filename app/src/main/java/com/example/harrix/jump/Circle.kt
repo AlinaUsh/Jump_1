@@ -9,9 +9,9 @@ import android.support.v4.content.ContextCompat.startActivity
 import kotlin.math.sqrt
 import kotlin.system.exitProcess
 
-class Circle (forma : Int,
-              c : Int, //color
-              var r : Int) :  Player (4 , c){
+class Circle (c : Int, //color
+              r : Int,
+              forma : Int = 4) :  Player (4 , c, r){
 
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
@@ -26,11 +26,11 @@ class Circle (forma : Int,
     }
 
     override fun check(triangle: Triangle, x: Int, y: Int){//: Boolean {
-        super.check(triangle, x, y)
+       // super.check(triangle, x, y)
 
         var p1 = Point(triangle.x - triangle.w, triangle.y)
-        var p2 = Point(triangle.x + triangle.w, triangle.y)
-        var p3 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
+        var p3 = Point(triangle.x + triangle.w, triangle.y)
+        var p2 = Point(triangle.x, triangle.y + triangle.orient * triangle.h)
 
         var k12 : Float = (p1.y - p2.y).toFloat() / (p1.x - p2.x).toFloat()//p1---p2
         var b12 : Float = (p1.x * p2.y - p2.x * p1.y).toFloat() /
@@ -57,7 +57,7 @@ class Circle (forma : Int,
                 var d : Float = (k12 * x - y.toFloat() + b12) * (k12 * x - y.toFloat() + b12) / (k12 * k12 + 1)
                 if (d <= r.toFloat() * r.toFloat())
                     alive =  false//return false
-                alive = true//return true
+               // alive = true//return true
             }
             else
             {
@@ -66,7 +66,7 @@ class Circle (forma : Int,
                         ((x.toFloat() - p1.x.toFloat()) * (x.toFloat() - p1.x.toFloat()) +
                                 (y.toFloat() - p1.y.toFloat()) * (y.toFloat() - p1.y.toFloat()) <= r * r))
                     alive = false//return false
-                alive = true//return true
+               // alive = true//return true
             }
         }
         else
@@ -76,7 +76,7 @@ class Circle (forma : Int,
                 var d : Float = (k23 * x - y.toFloat() + b23) * (k23 * x - y.toFloat() + b23) / (k23 * k23 + 1)
                 if (d <= r.toFloat() * r.toFloat())
                     alive = false//return false
-                alive = true//return true
+               // alive = true//return true
             }
             else
             {
@@ -85,10 +85,9 @@ class Circle (forma : Int,
                         ((x.toFloat() - p3.x.toFloat()) * (x.toFloat() - p3.x.toFloat()) +
                                 (y.toFloat() - p3.y.toFloat()) * (y.toFloat() - p3.y.toFloat()) <= r * r))
                     alive = false//return false
-                alive = true//return true
+                //alive = true//return true
             }
         }
-
     }
 
     fun dist(x1 : Int, y1 : Int, x2 : Int, y2 : Int) : Boolean {
@@ -109,6 +108,6 @@ class Circle (forma : Int,
         if ((y > rect.y - rect.h - r) && (x * 2 > rect.x * 2 - rect.w) && (y < rect.y - rect.h + r) &&
                 (x * 2 < rect.x * 2 + rect.w))
             jumpOnRect = 0//return 0
-        jumpOnRect = 1//return 1
+        //jumpOnRect = 1//return 1
     }
 }
