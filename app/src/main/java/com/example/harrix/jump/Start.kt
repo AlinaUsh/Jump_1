@@ -11,8 +11,8 @@ class Start : AppCompatActivity(), Scoreable {
         passive_text.text="score: ${score / 10}"
     }
 
-    var coins : ArrayList<Coins> = ArrayList()
-    var relief : ArrayList<ObjectRelief> = ArrayList()
+    val coins : ArrayList<Coins> = ArrayList()
+    val relief : ArrayList<ObjectRelief> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
