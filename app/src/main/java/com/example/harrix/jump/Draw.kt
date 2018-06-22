@@ -14,7 +14,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     var touch = false
     var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 300//высоты прыжка
+    var hOfJump: Int = 275//высоты прыжка
 
     var x = -2
     val dx = 50
@@ -47,7 +47,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         }
 
         fun drawReliefRect(rect: ReliefRect){
-            canvas.drawRect(Rect(rect.x-rect.w,rect.y - rect.h,rect.x + rect.w,rect.y),paint)
+            canvas.drawRect(Rect(rect.x-rect.w,rect.y - rect.h,rect.x + rect.w, rect.y),paint)
         }
 
         for (i in 0..this.relief.size-1){
@@ -103,7 +103,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         if(player.jumpOnRect){
             touch = false
-            player.highbottom = canvas.height - relief[something].y + relief[something].h + 1
+            player.highbottom = canvas.height -relief[something].y  + 1 + player.r
             player.y = player.highbottom
             player.jumpOnRect = false
         }
