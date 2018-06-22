@@ -85,6 +85,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                     relief[i].y = canvas.height/5*4
                 if (relief[i].y == 3)
                     relief[i].y = canvas.height/2
+                if (relief[i].y == 4)
+                    relief[i].y = canvas.height/7*6
                 drawReliefRect(relief[i] as ReliefRect)
             }
         }

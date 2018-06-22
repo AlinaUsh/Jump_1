@@ -23,7 +23,7 @@ class Lvl2 : AppCompatActivity() , Scoreable {
         display.getSize(size)
         val width = size.x
 
-        relief.add(ReliefRect(700, -1, 100, 2))
+        /*relief.add(ReliefRect(700, -1, 100, 2))
         relief.add(ReliefRect(760, -1, 100,2))
         relief.add(ReliefRect(820, -1, 100,2))
         relief.add(ReliefRect(940, 2, 100,2))
@@ -83,13 +83,33 @@ class Lvl2 : AppCompatActivity() , Scoreable {
         relief.add(Triangle(3280,1,1))
         relief.add(Triangle(3380,-1,-1))
         relief.add(Triangle(3580,-1,-1))
-        relief.add(Triangle(3780,-1,-1))
-        relief.add(ReliefRect(3960, 2, 100, 2))
-        relief.add(ReliefRect(4020, 2, 100,2))
-        relief.add(ReliefRect(4080, 2, 100,2))
-        relief.add(ReliefRect(4140, 2, 100, 2))
-        relief.add(ReliefRect(4200, 2, 100,2))
-        relief.add(ReliefRect(4260, 2, 100,2))
+        relief.add(Triangle(3780,-1,-1))*/
+        relief.add(ReliefRect(3960, 4, 100, 2))
+        relief.add(ReliefRect(4020, 4, 100,2))
+        relief.add(ReliefRect(4080, 4, 100,2))
+        relief.add(ReliefRect(4140, 4, 100, 2))
+        relief.add(ReliefRect(4200, 4, 100,2))
+        relief.add(ReliefRect(4260, 4, 100,2))
+        relief.add(Triangle(4370,-1,-1))
+        relief.add(Triangle(4430,-1,-1))
+        relief.add(Triangle(4730,-1,-1))
+        relief.add(Triangle(4930,-1,-1))
+        relief.add(ReliefRect(5230, -1, 100,2))
+        relief.add(ReliefRect(5290, -1, 100,2))
+        relief.add(ReliefRect(5350, -1, 100,2))
+        relief.add(Triangle(5410,-1,-1))
+        relief.add(Triangle(5470,-1,-1))
+        relief.add(ReliefRect(5530, -1, 100,2))
+        relief.add(ReliefRect(5590, -1, 100,2))
+        relief.add(ReliefRect(5650, -1, 100,2))
+        relief.add(Triangle(5710,-1,-1))
+        relief.add(Triangle(5770,-1,-1))
+        relief.add(Triangle(5970,-1,-1))
+        relief.add(Triangle(6170,1,1))
+        relief.add(Triangle(6370,-1,-1))
+
+
+
 
 
 
