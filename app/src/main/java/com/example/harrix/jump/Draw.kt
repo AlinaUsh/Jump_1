@@ -78,7 +78,6 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         //x -= dx
 
-
         if (touch) {
             //dh += dy;
             if (player.y + dy >= player.highbottom + hOfJump)
@@ -88,8 +87,6 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             paint.color = Draw.color
             player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
-            //отрисовка объекта
-            //проверка препядствий
             if (player.y <= 0) {
                 touch = false
                 dy = 3
@@ -101,7 +98,6 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             dy = 3
             player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
-            //отрисовка объекта
         }
 
         if ((deleteRelief) && (sinceLastShot >= 100))
