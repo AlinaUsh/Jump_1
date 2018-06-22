@@ -5,21 +5,31 @@ import android.graphics.*
 import android.graphics.Color
 import android.view.View
 import java.util.*
+import kotlin.collections.ArrayList
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player, var coins: ArrayList<Coins>) : View(context) {
     companion object {
         var color = Color.BLUE
     }
 
     var touch = false
     var dy: Int = 5//разница в высоте между перерисовками
+    var deleteRelief = false
+
+    var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
     var hOfJump: Int = 260//высоты прыжка
 
     var x = -2
     var y = -1
     var l = 0
+    var y0 = -1
+
     var something : Int = 0
+    var lastRectXR : Int = -1//правый край последнего прямоугольника платформы
+    var nextOnTheSameH : Boolean = false//последний ли прямоугольник платформы
+    var sinceLastShot : Int = 0
+    var firstJumpOn = true
 
     //обьявляем игрока
 
@@ -30,6 +40,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         var y0 = canvas.height
         if (x == -2) x = canvas.width
         if (y == -1) y = canvas.height
+        if (player.y == -100){
+            player.y = canvas.height - player.r
+            player.highbottom = canvas.height
+        }
+        if (player.x == 0) player.x = canvas.width/4
 
 
         var paint = Paint()
@@ -72,53 +87,97 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 drawReliefRect(relief[i] as ReliefRect)
             }
         }
+        for (i in 0..this.coins.size - 1)
+            this.coins[i].x -= this.coins[i].speed
+
+        lastRectXR -= relief[0].speed
+        sinceLastShot += relief[0].speed
+
         //x -= dx
 
         if (touch) {
-            dh += dy;
-            if (player.y >= player.highbottom+hOfJump)
-                dy *= -1
-            player.y += dy
-
-            paint.color = Draw.color
-            player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
+            //dh += dy;
+            if (player.y + player.speedy + player.r <= player.highbottom - hOfJump)
+                player.speedy *= -1
+            player.y += player.speedy
+           // dh += dy
+           // paint.color = Draw.color
+           // player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
             //отрисовка объекта
             //проверка препядствий
-            if (player.y <= 0) {
+            if (player.y + player.r >= canvas.height) {
                 touch = false
-                dy = 5
-                player.highbottom = 0
-                player.y = player.highbottom
+                player.speedy = -3//dy = 3
+                player.highbottom = canvas.height
+                player.y = canvas.height - player.r//player.highbottom
             }
         } else {
-            paint.color = Draw.color
-            dy = 5
-            player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
+           // paint.color = Draw.color
+            //dy = 3
+           // player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта
         }
 
+        if ((deleteRelief) && (sinceLastShot >= 100))
+        {
+            y0 = y
+            for (i in 0..this.relief.size - 1)
+                if ((relief[i].y >= y0) && (relief[i].y - relief[i].h <= y0) &&
+                        (relief[i].x > x)){
+                    //удалить элемент
+                    relief[i].x = -1000
+                    sinceLastShot = 0
+                    deleteRelief = false
+                    break
+                }
+            deleteRelief = false
+        }
+
+        if ((player.x == lastRectXR) && (touch == false) &&
+                (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы
+            player.speedy = player.speedyabs//dy = -3
+        }else if(player.x == lastRectXR) {
+            //  nextOnTheSameH = false
+
+        }
+
+        for (i in 0..this.coins.size - 1)
+            player.getCoin(coins[i].x, coins[i].y)
 
         for (i in 0..this.relief.size-1){
             if (relief[i].forma == 1){
-                player.check((relief[i] as Triangle),player.x + canvas.width/4,canvas.height - player.y - player.r)
+                player.check((relief[i] as Triangle),player.x , player.y)
             }
             else{
-                player.checkRect((relief[i] as ReliefRect), player.x + canvas.width/4,canvas.height - player.y - player.r)
+                if ((lastRectXR > relief[i].x - relief[i].w)&&(lastRectXR < relief[i].x + relief[i].w)&&
+                        (relief[i].y == player.highbottom))
+                    lastRectXR = relief[i].x + relief[i].w
+                player.checkRect((relief[i] as ReliefRect), player.x , player.y)
             }
-            if(player.jumpOnRect){
+            if(player.jumpOnRect && firstJumpOn){
                 something = i
+                lastRectXR = relief[i].x + relief[i].w
+                firstJumpOn = false
             }
+          //  if ((lastRectXR > player.x) && (relief[i].forma == 2) && (relief[i].x - 15 == lastRectXR))
+          //      nextOnTheSameH = true
         }
 
         if(player.jumpOnRect){
             touch = false
-            player.highbottom = canvas.height - relief[something].y + relief[something].h + 1
-            player.y = player.highbottom
+            player.highbottom = relief[something].y - relief[something].h
+            player.y = player.highbottom - player.r
             player.jumpOnRect = false
+            player.speedy = player.speedyabs
+            firstJumpOn = true
+         //   dh = 0
+            touch = false
         }
 
+        paint.color = Draw.color
+        player.drawobject(canvas,player.x , player.y)
 
         if(player.alive)
             invalidate()
