@@ -74,6 +74,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                     relief[i].y = canvas.height/3*2
                 if (relief[i].y == 2)
                     relief[i].y = canvas.height/5*4
+                if (relief[i].y == 4)
+                    relief[i].y = canvas.height/7*6
                 drawTriangle(relief[i] as Triangle)
             }
             if(relief[i].forma == 2){

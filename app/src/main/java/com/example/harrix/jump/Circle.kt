@@ -98,9 +98,9 @@ class Circle (c : Int, //color
     override fun checkRect(rect: ReliefRect, x: Int, y: Int){//: Int {
         //super.checkRect(rect, x, y)
         if (((y > rect.y - rect.h) && (y < rect.y)
-                        && ((x - r)  >  rect.x - rect.w) && ((x + r ) < rect.x + rect.w)) ||
+                        && ((x + r)  >  rect.x - rect.w) && ((x + r ) < rect.x + rect.w)) ||
                 ((y - r < rect.y) && ((y > rect.y))
-                        && ((x+r) < rect.x + rect.w) && ((x-r) > rect.x - rect.w) ||
+                        && ((x+r) < rect.x + rect.w) && ((x+r) > rect.x - rect.w) ||
                 dist(x, y, rect.x - rect.w , rect.y) ||
                 dist(x, y, rect.x + rect.w , rect.y) ||
                 dist(x, y, rect.x - rect.w, rect.y - rect.h)))

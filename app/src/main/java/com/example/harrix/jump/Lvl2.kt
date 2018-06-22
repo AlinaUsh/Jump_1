@@ -23,7 +23,7 @@ class Lvl2 : AppCompatActivity() , Scoreable {
         display.getSize(size)
         val width = size.x
 
-        /*relief.add(ReliefRect(700, -1, 100, 2))
+        relief.add(ReliefRect(700, -1, 100, 2))
         relief.add(ReliefRect(760, -1, 100,2))
         relief.add(ReliefRect(820, -1, 100,2))
         relief.add(ReliefRect(940, 2, 100,2))
@@ -83,7 +83,7 @@ class Lvl2 : AppCompatActivity() , Scoreable {
         relief.add(Triangle(3280,1,1))
         relief.add(Triangle(3380,-1,-1))
         relief.add(Triangle(3580,-1,-1))
-        relief.add(Triangle(3780,-1,-1))*/
+        relief.add(Triangle(3780,-1,-1))
         relief.add(ReliefRect(3960, 4, 100, 2))
         relief.add(ReliefRect(4020, 4, 100,2))
         relief.add(ReliefRect(4080, 4, 100,2))
@@ -105,8 +105,13 @@ class Lvl2 : AppCompatActivity() , Scoreable {
         relief.add(Triangle(5710,-1,-1))
         relief.add(Triangle(5770,-1,-1))
         relief.add(Triangle(5970,-1,-1))
-        relief.add(Triangle(6170,1,1))
+        relief.add(Triangle(6170,2,1))
         relief.add(Triangle(6370,-1,-1))
+        relief.add(Triangle(6570,2,1))
+        relief.add(Triangle(6730,-1,-1))
+        relief.add(Triangle(6790,-1,1))
+        relief.add(Triangle(6970,2,1))
+        relief.add(Triangle(7170,-1,-1))
 
 
 
