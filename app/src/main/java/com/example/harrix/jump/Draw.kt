@@ -115,6 +115,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                     sinceLastShot = 0
                     break
                 }
+            deleteRelief = false
         }
 
         if ((player.x == lastRectXR) && (touch == false) &&
