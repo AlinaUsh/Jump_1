@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         tapToStart.setOnClickListener {
             val intent = Intent(this, Menu::class.java)
             startActivity(intent)

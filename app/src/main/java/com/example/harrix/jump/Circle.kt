@@ -16,7 +16,7 @@ class Circle (c : Int, //color
     override fun drawobject(canvas: Canvas, x: Int, y: Int) {
         super.drawobject(canvas, x, y)
         var paint = Paint()
-        //paint.color =
+        paint.color = Draw.color
         canvas.drawCircle(x.toFloat(),y.toFloat(),r.toFloat(),paint)
     }
 

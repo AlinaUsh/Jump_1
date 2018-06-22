@@ -12,12 +12,11 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     }
 
     var touch = false
-    var dy: Int = 3//разница в высоте между перерисовками
+    var dy: Int = 5//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 300//высоты прыжка
+    var hOfJump: Int = 260//высоты прыжка
 
     var x = -2
-    val dx = 50
     var y = -1
     var l = 0
     var something : Int = 0
@@ -55,9 +54,21 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             if (relief[i].forma == 1) {
                 if (relief[i].y == -1)
                     relief[i].y = canvas.height
+                if (relief[i].y == 1)
+                    relief[i].y = canvas.height/3*2
+                if (relief[i].y == 2)
+                    relief[i].y = canvas.height/5*4
                 drawTriangle(relief[i] as Triangle)
             }
             if(relief[i].forma == 2){
+                if (relief[i].y == -1)
+                    relief[i].y = canvas.height
+                if (relief[i].y == 1)
+                    relief[i].y = canvas.height/3*2
+                if (relief[i].y == 2)
+                    relief[i].y = canvas.height/5*4
+                if (relief[i].y == 3)
+                    relief[i].y = canvas.height/2
                 drawReliefRect(relief[i] as ReliefRect)
             }
         }
@@ -76,13 +87,13 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             //проверка препядствий
             if (player.y <= 0) {
                 touch = false
-                dy = 3
+                dy = 5
                 player.highbottom = 0
                 player.y = player.highbottom
             }
         } else {
             paint.color = Draw.color
-            dy = 3
+            dy = 5
             player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - 10).toFloat(), 20f, paint)
             //отрисовка объекта

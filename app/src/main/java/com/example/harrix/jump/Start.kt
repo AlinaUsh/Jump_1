@@ -1,6 +1,7 @@
 package com.example.harrix.jump
 
 import android.content.Intent
+import android.graphics.Point
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -17,24 +18,31 @@ class Start : AppCompatActivity(), Scoreable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        relief.add(Triangle(150,0,1))
-        relief.add(Triangle(700,0,1))
-        relief.add(Triangle(210,0,1))
-        relief.add(Triangle(2100,0,1))
-        relief.add(Triangle(1200,0,1))
-        relief.add(Triangle(850,-1,-1))
-        relief.add(Triangle(1020,-1,-1))
-        relief.add(Triangle(1700,-1,-1))
-        relief.add(Triangle(1760,-1,-1))
-        relief.add(Triangle(2300,-1,-1))
-        relief.add(Triangle(2360,-1,-1))
-        relief.add(Triangle(2420,-1,-1))
-        relief.add(ReliefRect(500,200,100))
-        relief.add(ReliefRect(560,200,100))
-        relief.add(ReliefRect(620,200,100))
-        relief.add(ReliefRect(1400,800,50))
-        relief.add(ReliefRect(1460,800,50))
-        relief.add(Triangle(1600,480,-1))
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val width = size.x
+
+        for (counter in 0..20) {
+            relief.add(Triangle(550 + width * counter, -1, -1))
+            relief.add(ReliefRect(1000 + width * counter, -1, 130, 2))
+            relief.add(ReliefRect(1060 + width * counter, -1, 130,2))
+            relief.add(ReliefRect(1120 + width * counter, -1, 130,2))
+            relief.add(ReliefRect(1180 + width * counter, 2, 100,2))
+            relief.add(ReliefRect(1240 + width * counter, 2, 100,2))
+            relief.add(ReliefRect(1300 + width * counter, 2, 100,2))
+            relief.add(Triangle(1420 + width * counter, -1, -1))
+            relief.add(Triangle(1620 + width * counter, -1, -1))
+            relief.add(Triangle(1840 + width * counter, -1, -1))
+            relief.add(Triangle(1900 + width * counter, 1, 1))
+            relief.add(Triangle(1960 + width * counter, 1, 1))
+            relief.add(ReliefRect(2100 + width * counter, -1, 50,2))
+            relief.add(ReliefRect(2350 + width * counter, -1, 50,2))
+            relief.add(ReliefRect(2600 + width * counter, -1, 50,2))
+            relief.add(ReliefRect(2660 + width * counter, -1, 50,2))
+            relief.add(ReliefRect(2720 + width * counter, 2, 50,2))
+            relief.add(ReliefRect(2780 + width * counter, 2, 50,2))
+        }
 
 
         val lay = findViewById<LinearLayout>(R.id.layout)
