@@ -107,7 +107,9 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 if ((relief[i].y >= y0) && (relief[i].y - relief[i].h <= y0) &&
                         (relief[i].x > x)){
                     //удалить элемент
-                    relief[i].x = -1000
+                    //relief[i].x = -1000
+                    var newRelief = ObjectRelief(relief[i].forma, -1000, relief[i].y, relief[i].speed, relief[i].h)
+                    relief[i] = newRelief
                     sinceLastShot = 0
                     deleteRelief = false
                     break
