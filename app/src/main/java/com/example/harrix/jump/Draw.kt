@@ -12,15 +12,17 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         var color = Color.BLUE
     }
 
+
     var touch = false
     var dy: Int = 5//разница в высоте между перерисовками
     var deleteRelief = false
 
-   // var dy: Int = 5//разница в высоте между перерисовками
+    var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
     var hOfJump: Int = 260//высоты прыжка
 
     var x = -2
+    val dx = 50
     var y = -1
     var l = 0
     var y0 = -1
@@ -95,6 +97,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
 
         //x -= dx
 
+
         if (touch) {
             //dh += dy;
             if (player.y + player.speedy + player.r <= player.highbottom - hOfJump)
@@ -135,13 +138,18 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             deleteRelief = false
         }
 
-        if ((player.x == lastRectXR) && (touch == false) &&
-                (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы
-            player.speedy = player.speedyabs//dy = -3
-        }else if(player.x == lastRectXR) {
-            //  nextOnTheSameH = false
-
+        if((player.highbottom < canvas.height) && (player.x >= lastRectXR) && (!touch)){
+            touch = true
+            player.speedy = player.speedyabs
         }
+
+      /*  if ((player.x >= lastRectXR) && (touch == false) &&
+                (nextOnTheSameH == false) && (0 != player.y) && (player.highbottom < canvas.height)){//доехали до клнца платформы
+            player.speedy = player.speedyabs//dy = -3
+        }else if(player.x >= lastRectXR) {
+              nextOnTheSameH = false
+
+        }*/
 
         for (i in 0..this.coins.size - 1)
             player.getCoin(coins[i].x, coins[i].y)
@@ -186,7 +194,5 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         if(context is Scoreable) {
             (context as Scoreable).updateScore(l)
         }
-
-
     }
 }
