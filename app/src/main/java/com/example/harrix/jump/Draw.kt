@@ -98,7 +98,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             //проверка препядствий
             if (player.y + player.r >= canvas.height) {
                 touch = false
-                player.speedy = -3//dy = 3
+                player.speedy = -player.speedyabs//dy = 3
                 player.highbottom = canvas.height
                 player.y = canvas.height - player.r//player.highbottom
             }
@@ -125,13 +125,18 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             deleteRelief = false
         }
 
-        if ((player.x == lastRectXR) && (touch == false) &&
-                (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы
-            player.speedy = player.speedyabs//dy = -3
-        }else if(player.x == lastRectXR) {
-            //  nextOnTheSameH = false
-
+        if((player.highbottom < canvas.height) && (player.x >= lastRectXR) && (!touch)){
+            touch = true
+            player.speedy = player.speedyabs
         }
+
+      /*  if ((player.x >= lastRectXR) && (touch == false) &&
+                (nextOnTheSameH == false) && (0 != player.y) && (player.highbottom < canvas.height)){//доехали до клнца платформы
+            player.speedy = player.speedyabs//dy = -3
+        }else if(player.x >= lastRectXR) {
+              nextOnTheSameH = false
+
+        }*/
 
         for (i in 0..this.coins.size - 1)
             player.getCoin(coins[i].x, coins[i].y)
@@ -141,8 +146,8 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 player.check((relief[i] as Triangle),player.x , player.y)
             }
             else{
-                if ((lastRectXR > relief[i].x - relief[i].w)&&(lastRectXR < relief[i].x + relief[i].w)&&
-                        (relief[i].y == player.highbottom))
+                if ((lastRectXR >= relief[i].x - relief[i].w)&&(lastRectXR < relief[i].x + relief[i].w)&&
+                        (relief[i].y - relief[i].h == player.highbottom))
                     lastRectXR = relief[i].x + relief[i].w
                 player.checkRect((relief[i] as ReliefRect), player.x , player.y)
             }
@@ -160,7 +165,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             player.highbottom = relief[something].y - relief[something].h
             player.y = player.highbottom - player.r
             player.jumpOnRect = false
-            player.speedy = player.speedyabs
+            player.speedy = -player.speedyabs
             firstJumpOn = true
          //   dh = 0
             touch = false
