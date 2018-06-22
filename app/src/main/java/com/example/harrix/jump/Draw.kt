@@ -113,6 +113,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                     //удалить элемент
                     relief[i].x = -1000
                     sinceLastShot = 0
+                    deleteRelief = false
                     break
                 }
             deleteRelief = false
