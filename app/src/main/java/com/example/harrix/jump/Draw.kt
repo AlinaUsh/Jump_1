@@ -149,6 +149,9 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             touch = false
         }
 
+        if (player.y == canvas.height)
+            player.alive = false
+
         if(player.alive)
             invalidate()
         l++
