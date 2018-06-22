@@ -8,7 +8,7 @@ open class Player (var forma : Int,
                    var r : Int = 5)
 {
    // var speedx : Int = 0
-    val speedyabs = 2
+    val speedyabs = 5
     var speedy : Int = -speedyabs       //отрицательная - вверх,  положительная - вниз
     var x : Int = 0
     var y : Int = -100          //координаты центра
