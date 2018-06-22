@@ -49,8 +49,9 @@ class Start : AppCompatActivity(), Scoreable {
             startActivity(intent)
         }
 
-        but2.setOnClickListener { draw.touch = true}
+        but2.setOnClickListener{draw.touch = true}
         //при нажатии на but1 deleteRelief = true
+        but1.setOnClickListener{draw.deleteRelief = true}
     }
 
 }

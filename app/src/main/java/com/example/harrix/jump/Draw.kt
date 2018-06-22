@@ -29,6 +29,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     var something : Int = 0
     var lastRectXR : Int = -1//правый край последнего прямоугольника платформы
     var nextOnTheSameH : Boolean = false//последний ли прямоугольник платформы
+    var sinceLastShot : Int = 0
 
     //обьявляем игрока
 
@@ -73,6 +74,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             this.coins[i].x -= this.coins[i].speed
 
         lastRectXR -= relief[0].speed
+        sinceLastShot += relief[0].speed
 
         //x -= dx
 
@@ -102,16 +104,18 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             //отрисовка объекта
         }
 
-        /*if (deleteRelief)
+        if ((deleteRelief) && (sinceLastShot >= 100))
         {
             y0 = y
             for (i in 0..this.relief.size - 1)
                 if ((relief[i].y >= y0) && (relief[i].y - relief[i].h <= y0) &&
                         (relief[i].x > x)){
                     //удалить элемент
+                    relief[i].x = -1000
+                    sinceLastShot = 0
                     break
                 }
-        } */
+        }
 
         if ((player.x == lastRectXR) && (touch == false) &&
                 (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы
