@@ -92,7 +92,7 @@ class Circle (c : Int, //color
     }
 
     fun dist(x1 : Int, y1 : Int, x2 : Int, y2 : Int) : Boolean {
-        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) < r * r
+        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) < (r * r/2).toInt()
     }
 
     override fun checkRect(rect: ReliefRect, x: Int, y: Int){//: Int {
@@ -100,7 +100,7 @@ class Circle (c : Int, //color
         if (((y > rect.y - rect.h) && (y < rect.y)
                         && ((x - r)  >  rect.x - rect.w) && ((x + r ) < rect.x + rect.w)) ||
                 ((y - r < rect.y) && ((y > rect.y))
-                        && (x < rect.x + rect.w) && (x > rect.x - rect.w) ||
+                        && ((x+r) < rect.x + rect.w) && ((x-r) > rect.x - rect.w) ||
                 dist(x, y, rect.x - rect.w , rect.y) ||
                 dist(x, y, rect.x + rect.w , rect.y) ||
                 dist(x, y, rect.x - rect.w, rect.y - rect.h)))

@@ -17,7 +17,6 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
     var dy: Int = 5//разница в высоте между перерисовками
     var deleteRelief = false
 
-    var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
     var hOfJump: Int = 260//высоты прыжка
 
@@ -178,7 +177,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             player.highbottom = relief[something].y - relief[something].h
             player.y = player.highbottom - player.r
             player.jumpOnRect = false
-            player.speedy = player.speedyabs
+            player.speedy = -player.speedyabs
             firstJumpOn = true
          //   dh = 0
             touch = false
