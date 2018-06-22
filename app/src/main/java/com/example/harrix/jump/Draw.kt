@@ -5,22 +5,31 @@ import android.graphics.*
 import android.graphics.Color
 import android.view.View
 import java.util.*
+import kotlin.collections.ArrayList
 
-class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player) : View(context) {
+class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: Player, var coins: ArrayList<Coins>) : View(context) {
     companion object {
         var color = Color.BLUE
     }
 
+
     var touch = false
+    var deleteRelief = false
+
     var dy: Int = 3//разница в высоте между перерисовками
     var dh: Int = 0//изменение высоты
-    var hOfJump: Int = 275//высоты прыжка
+    var hOfJump: Int = 300//высоты прыжка
 
     var x = -2
     val dx = 50
     var y = -1
     var l = 0
+    var y0 = -1
+
     var something : Int = 0
+    var lastRectXR : Int = -1//правый край последнего прямоугольника платформы
+    var nextOnTheSameH : Boolean = false//последний ли прямоугольник платформы
+    var sinceLastShot : Int = 0
 
     //обьявляем игрока
 
@@ -47,7 +56,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         }
 
         fun drawReliefRect(rect: ReliefRect){
-            canvas.drawRect(Rect(rect.x-rect.w,rect.y - rect.h,rect.x + rect.w, rect.y),paint)
+            canvas.drawRect(Rect(rect.x-rect.w,rect.y - rect.h,rect.x + rect.w,rect.y),paint)
         }
 
         for (i in 0..this.relief.size-1){
@@ -61,14 +70,21 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 drawReliefRect(relief[i] as ReliefRect)
             }
         }
+        for (i in 0..this.coins.size - 1)
+            this.coins[i].x -= this.coins[i].speed
+
+        lastRectXR -= relief[0].speed
+        sinceLastShot += relief[0].speed
+
         //x -= dx
 
+
         if (touch) {
-            dh += dy;
-            if (player.y >= player.highbottom+hOfJump)
+            //dh += dy;
+            if (player.y + dy >= player.highbottom + hOfJump)
                 dy *= -1
             player.y += dy
-
+            dh += dy
             paint.color = Draw.color
             player.drawobject(canvas,canvas.width/4 + player.x, canvas.height - player.y - player.r)
            // canvas.drawCircle((canvas.width / 2).toFloat(), (y0 - dh - 10).toFloat(), 20f, paint)
@@ -78,7 +94,7 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
                 touch = false
                 dy = 3
                 player.highbottom = 0
-                player.y = player.highbottom
+                player.y = 0//player.r//player.highbottom
             }
         } else {
             paint.color = Draw.color
@@ -88,6 +104,29 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             //отрисовка объекта
         }
 
+        if ((deleteRelief) && (sinceLastShot >= 100))
+        {
+            y0 = y
+            for (i in 0..this.relief.size - 1)
+                if ((relief[i].y >= y0) && (relief[i].y - relief[i].h <= y0) &&
+                        (relief[i].x > x)){
+                    //удалить элемент
+                    relief[i].x = -1000
+                    sinceLastShot = 0
+                    deleteRelief = false
+                    break
+                }
+            deleteRelief = false
+        }
+
+        if ((player.x == lastRectXR) && (touch == false) &&
+                (nextOnTheSameH == false) && (0 != player.y)){//доехали до клнца платформы
+            dy = -3
+        }else if(player.x == lastRectXR)
+            nextOnTheSameH = false
+
+        for (i in 0..this.coins.size - 1)
+            player.getCoin(coins[i].x, coins[i].y)
 
         for (i in 0..this.relief.size-1){
             if (relief[i].forma == 1){
@@ -98,16 +137,21 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
             }
             if(player.jumpOnRect){
                 something = i
+                lastRectXR = relief[i].x + 15
             }
+            if ((lastRectXR > player.x) && (relief[i].forma == 2) && (relief[i].x - 15 == lastRectXR))
+                nextOnTheSameH = true
         }
 
         if(player.jumpOnRect){
             touch = false
-            player.highbottom = canvas.height -relief[something].y  + 1 + player.r
-            player.y = player.highbottom
+            player.highbottom = canvas.height - relief[something].y + relief[something].h + 1
+            player.y = player.highbottom// + player.r
             player.jumpOnRect = false
+            dy = 3
+            dh = 0
+            touch = false
         }
-
 
         if(player.alive)
             invalidate()
@@ -116,7 +160,5 @@ class Draw (context : Context,var relief : ArrayList<ObjectRelief>, var player: 
         if(context is Scoreable) {
             (context as Scoreable).updateScore(l)
         }
-
-
     }
 }
